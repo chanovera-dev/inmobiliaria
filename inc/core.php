@@ -6,7 +6,6 @@
  * - Navigation menus registration
  * - WordPress core features support
  * - Asset loading with cache busting
- * - Widget areas registration
  *
  * Sets up theme defaults and registers support for various WordPress features
  * 
