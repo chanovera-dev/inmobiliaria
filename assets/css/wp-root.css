@@ -1,0 +1,16 @@
+:root {
+    color-scheme: light dark;
+    /* sizes */
+    --heigh-wp-adminbar: 2.875rem;
+    --green-lighter: oklch(from var(--wp--preset--color--green) clamp(0, l + 0.22, 1) calc(c * 1.1) calc(h * .82));
+    --green-darker: oklch(from var(--wp--preset--color--green) clamp(0, l - 0.3, 1) calc(c * 1.1) calc(h * .82));
+}
+
+
+
+@media (width >= 783px) {
+    :root {
+            /* sizes */
+        --heigh-wp-adminbar: 2rem;
+    }
+}

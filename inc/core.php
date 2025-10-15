@@ -142,7 +142,6 @@ function footer_components() {
     file_exists( $directory . "$assets_path/css/wp-root.css" ) ? $enqueue_style( 'wp-root', "$assets_path/css/wp-root.css" ) : null;
     file_exists( $directory . "$assets_path/css/forms.css" ) ? $enqueue_style( 'custom-forms', "$assets_path/css/forms.css" ) : null;
     file_exists( $directory . "$assets_path/js/global.js" ) ? $enqueue_script( 'global-scripts', "$assets_path/js/global.js" ) : null;
-    file_exists( $directory . "$assets_path/js/animate-in.js" ) ? $enqueue_script( 'animate-in', "$assets_path/js/animate-in.js" ) : null;
      
     if ( is_user_logged_in() ) {
         file_exists( $directory . "$assets_path/css/wp-logged-in.css" ) ? $enqueue_style( 'wp-logged-in', "$assets_path/css/wp-logged-in.css" ) : null;
