@@ -1,5 +1,5 @@
 header.block {
-    margin: 2.5rem 0;
+    margin: 1.25rem 0 2rem;
 
     & .content {
         position: relative;
@@ -8,7 +8,7 @@ header.block {
         overflow: hidden;
         border-radius: 1.5rem;
         corner-shape: inherit;
-        box-shadow: #2554257c 0 0.125rem .75rem 0 inset;
+        box-shadow: #5151517c 0 0.125rem .75rem 0 inset;
 
         & > .backdrop {
             background: 
@@ -53,6 +53,7 @@ header.block {
         }
 
         & .page-title {
+            font-size: var(--wp--preset--font-size--x-large);
             text-align: center;
             position: relative;
             padding: 1rem 2rem;
@@ -69,6 +70,8 @@ header.block {
             padding: .25rem .5rem;
             border-radius: .5rem;
             margin-inline: auto;
+            margin-block-start: 14px;
+            margin-block-end: 14px;
         }
     }
 }

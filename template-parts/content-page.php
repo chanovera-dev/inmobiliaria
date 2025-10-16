@@ -1,4 +1,4 @@
-<div id="main" class="site-main" role="main">
+<div id="main" class="site-main" role="main"> 
     <article class="page" id="<?php the_ID(); ?>">
         <header class="block">
             <div class="content heading">

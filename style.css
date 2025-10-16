@@ -20,7 +20,36 @@ body {
         & .content.heading {
             corner-shape: squircle;
         }
+
+        & .content-author {
+            border-radius: 1rem;
+            corner-shape: squircle;
+
+            & .avatar {
+                border-radius: 1rem;
+            }
+        }
+
+        & .btn,
+        & #submit {
+            border-radius: 1.4rem;
+            corner-shape: squircle;
+        }
+
+        input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="range"]):not([type="color"]):not(.wp-block-search__input),
+        textarea,
+        select {
+            border-radius: 1rem;
+            corner-shape: squircle;
+        }
     }
+}
+
+*,
+::before,
+::after {
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .block {

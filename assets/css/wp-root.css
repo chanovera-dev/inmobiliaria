@@ -8,10 +8,10 @@
     --base-dark: oklch(from var(--wp--preset--color--base) clamp(0, l + 0, 0) calc(c * 1) calc(h * 1));
     --base-alpha-dark: oklch(from var(--wp--preset--color--base-alpha) clamp(0, l + 0, 0) calc(c * 1) calc(h * 1));
     --contrast-dark: oklch(from var(--wp--preset--color--contrast) clamp(1, l + 0, 0) calc(c * 1) calc(h * 1));
+    --secondary-dark: oklch(from var(--wp--preset--color--secondary) clamp(.2, l + 0, 0) calc(c * 1) calc(h * 1));
 
-
-    --green-lighter: oklch(from var(--wp--preset--color--green) clamp(0, l + 0.22, 1) calc(c * 1.1) calc(h * .82));
-    --green-darker: oklch(from var(--wp--preset--color--green) clamp(0, l - 0.3, 1) calc(c * 1.1) calc(h * .82));
+    --green--lighter: oklch(from var(--wp--preset--color--green) calc(l + .2) c h);
+    --green--darker: oklch(from var(--wp--preset--color--green) clamp(0, l - 0.3, 1) calc(c * 1.1) calc(h * .82));
 }
 
 

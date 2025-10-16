@@ -118,3 +118,18 @@ function theme_custom_icons() {
     <?php
 }
 add_action('wp_head', 'theme_custom_icons');
+
+/**
+ * Modify the size of the comment avatar in WordPress.
+ */
+function custom_comment_avatar_size($avatar) {
+    // Remove existing width, height, and style attributes from the avatar
+    $avatar = preg_replace('/(width|height)="\d*"\s/', '', $avatar);
+    $avatar = preg_replace('/style=["\'](.*?)["\']/', '', $avatar);
+
+    // Set a fixed width and height of 70 pixels for the avatar
+    $avatar = preg_replace('/src=([\'"])((?:(?!\1).)*?)\1/', 'src=$1$2$1 width="70" height="70"', $avatar);
+
+    return $avatar;
+}
+add_filter('get_avatar', 'custom_comment_avatar_size', 10, 1);

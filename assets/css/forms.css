@@ -34,27 +34,29 @@ select {
     height: calc(2.25rem + 2px);
     padding: .375rem .75rem;
     font-family: var(--wp--preset--font-family--manrope);
-    font-size: 1rem;
+    font-size: var(--wp--preset--font-size--medium);
     font-weight: 400;
     line-height: 1.25;
-    color: light-dark(var(--text--light), var(--text--dark));
+    color: light-dark(var(--wp--preset--color--contrast), var(--contrast-dark));
+    background-color: transparent;
     background-clip: padding-box;
     border: 0.063rem solid var(--wp--preset--color--accent-6);
-    border-radius: 1rem;
-    corner-shape: squircle;
+    border-radius: .5rem;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="range"]):not([type="color"]):not(.wp-block-search__input):hover,
 textarea:hover,
 select:hover {
-    
+    border-color: light-dark(var(--wp--preset--color--green), var(--wp--preset--color--green));
 }
 
 input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="range"]):not([type="color"]):not(.wp-block-search__input):focus,
 textarea:focus,
 select:focus {
     outline: 0;
+    border-color: light-dark(var(--green--lighter), var(--green--lighter));
+    box-shadow: 0 0 0 .2rem var(--wp--preset--color--green-alpha);
 }
 
 ::placeholder {
@@ -82,26 +84,65 @@ textarea {
 *   B U T T O N S
 *******************************************************************/
 
-.btn {
-    font-size: var(--wp--preset--font-size--medium);
-    border: 1px solid var(--wp--preset--color--accent-6);
-    border-radius: 1rem;
-    corner-shape: squircle;
+.btn,
+#submit {
     display: inline-flex;
     align-items: center;
+    line-height: 1;
     gap: 7px;
-    padding: var(--padding-button);
+    padding: 1rem 1.25rem;
+    border-radius: .5rem;
+    corper-shape: inherit;
+    border: 1px solid transparent;
+    transition: color .15s ease-in-out, border-color .15s ease-in-out;
+
+    & svg {
+      height: 1lh;
+    }
 }
 
-.primary {}
+.primary,
+#submit {
+  position: relative;
+  overflow: hidden;
+  color: var(--wp--preset--color--base);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: 
+    radial-gradient(circle at 30% 20%, #39a139 0%, transparent 60%),
+    radial-gradient(circle at 70% 40%, #2e8c2e 0%, transparent 50%),
+    radial-gradient(circle at 15% 60%, #1f6f1f 0%, transparent 50%),
+    radial-gradient(circle at 75% 80%, #126f12 0%, transparent 55%),
+    radial-gradient(circle at 50% 90%, #0f5b0f 0%, transparent 60%),
+    #127128; /* base color */
+  border-color: var(--wp--preset--color--green);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px, rgba(0, 0, 0, 0.2) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -2px 0px inset;
+  transition: filter .3s ease-in-out;
+  
+  &:hover {
+    filter: brightness(1.1);
+  }
+
+
+}
 
 .secondary {}
 
-.outline {}
+.outline {
+  border-color: var(--wp--preset--color--accent-6);
+
+  &:hover {
+    color: light-dark(var(--wp--preset--color--green), var(--wp--preset--color--green));
+    border-color: light-dark(var(--wp--preset--color--green), var(--wp--preset--color--green));
+  }
+}
 
 .without-line {}
 
-.btn-small {}
+.btn-small {
+  font-size: var(--wp--preset--font-size--small);
+  padding: 5px 8px;
+}
 
 .btn-large {}
 
@@ -154,8 +195,7 @@ textarea {
   content: "";
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 4px;
   width: 1em;
   height: 1em;
   border: 1px solid light-dark(#0000002c, #ffffff47);
@@ -173,10 +213,9 @@ textarea {
   border-radius: 1rem;
   corner-shape: squircle;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0.44em;
   left: 0.2em;
-  background-color: light-dark(#323232, #e6e6e6);
+  background-color: light-dark(var(--green--lighter), var(--green--lighter));
   transition: all 0.2s;
 }
 

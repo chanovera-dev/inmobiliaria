@@ -47,7 +47,6 @@ header.block {
             }
 
             &::after {
-                top: -2px; left: -2px;
                 mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 76%, light-dark(hsla(0, 0%, 100%, 0.644), hsla(0, 0%, 100%, 0.644)));
             }
 
