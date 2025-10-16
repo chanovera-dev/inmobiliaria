@@ -21,7 +21,7 @@ get_header(); ?>
     <!-- Archive Page Header -->
     <header class="block posts--header">
         <div class="content">
-            <h1 class="page-title"><?php esc_html_e('Búsqueda de "', 'inmobiliaria'); echo the_search_query(); esc_html_e('"', 'inmobiliaria') ?></h1>
+            <h1 class="page-title"><?php esc_html_e( 'Últimos artículos', 'inmobiliaria' ); ?></h1>
         </div>
     </header>
 

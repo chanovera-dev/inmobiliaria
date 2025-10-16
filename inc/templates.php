@@ -26,7 +26,7 @@
  * @param string $media
  * @return void
  */
-function outlet_enqueue_style( $handle, $path, $media = 'all' ) {
+function inmobiliaria_enqueue_style( $handle, $path, $media = 'all' ) {
     $uri = get_template_directory_uri();
     wp_enqueue_style( $handle, $uri . $path, [], get_asset_version( $path ), $media );
 }
@@ -38,7 +38,7 @@ function outlet_enqueue_style( $handle, $path, $media = 'all' ) {
  * @param string $path
  * @return void
  */
-function outlet_enqueue_script( $handle, $path ) {
+function inmobiliaria_enqueue_script( $handle, $path ) {
     $uri = get_template_directory_uri();
     wp_enqueue_script( $handle, $uri . $path, [], get_asset_version( $path ), true );
 }
@@ -65,31 +65,30 @@ function page_template() {
         $page_thumbnail = "$assets_path/css/page-thumbnail.css";
         $parallax_hero = "$assets_path/js/parallax-hero.js";
 
-        outlet_enqueue_style( 'page', $page_css );
-        outlet_enqueue_script( 'blur-typing', $blur_typing );
+        inmobiliaria_enqueue_style( 'page', $page_css );
 
         $post_id = get_queried_object_id();
         if ( $post_id && has_post_thumbnail( $post_id ) ) {
-            outlet_enqueue_style( 'page-thumbnail', $page_thumbnail );
-            outlet_enqueue_script( 'parallax-hero', $parallax_hero );
+            inmobiliaria_enqueue_style( 'page-thumbnail', $page_thumbnail );
+            inmobiliaria_enqueue_script( 'parallax-hero', $parallax_hero );
         }
 
         if ( is_single() ) {
-            outlet_enqueue_style( 'single', $single_css );
+            inmobiliaria_enqueue_style( 'single', $single_css );
+            inmobiliaria_enqueue_style( 'related-posts', $related_css );
+            // $related_posts = get_posts( [
+            //     'post__not_in' => [ $post_id ],
+            //     'posts_per_page' => 1,
+            //     'category__in' => wp_get_post_categories( $post_id ),
+            //     'tag__in' => wp_get_post_tags( $post_id, [ 'fields' => 'ids' ] ),
+            // ] );
 
-            $related_posts = get_posts( [
-                'post__not_in' => [ $post_id ],
-                'posts_per_page' => 1,
-                'category__in' => wp_get_post_categories( $post_id ),
-                'tag__in' => wp_get_post_tags( $post_id, [ 'fields' => 'ids' ] ),
-            ] );
-
-            if ( ! empty( $related_posts ) ) {
-                outlet_enqueue_style( 'related-posts', $related_css );
-            }
+            // if ( ! empty( $related_posts ) ) {
+            //     inmobiliaria_enqueue_style( 'related-posts', $related_css );
+            // }
 
             if ( comments_open() ) {
-            outlet_enqueue_style( 'custom-comments', $comments_css );
+            inmobiliaria_enqueue_style( 'custom-comments', $comments_css );
             }
         }
     }
@@ -112,13 +111,11 @@ function posts_styles() {
     if ( is_home() or is_archive() or is_search() ) {
         $posts_css = "$assets_path/css/posts.css";
         $pagination_css = "$assets_path/css/pagination.css";
-        $blur_typing = "$assets_path/js/blur-typing.js";
 
-        outlet_enqueue_style( 'posts', $posts_css );
-        outlet_enqueue_script( 'blur-typing', $blur_typing );
+        inmobiliaria_enqueue_style( 'posts', $posts_css );
         
         if ( paginate_links() ) {
-            outlet_enqueue_style( 'pagination', $pagination_css );
+            inmobiliaria_enqueue_style( 'pagination', $pagination_css );
         }
     }
 }
@@ -138,7 +135,7 @@ function page404_styles() {
 
     if ( is_404() ) {
         $error404_css = "$assets_path/css/error404.css";
-        outlet_enqueue_style( 'error404', $error404_css );
+        inmobiliaria_enqueue_style( 'error404', $error404_css );
     }
 }
 add_action( 'wp_enqueue_scripts', 'page404_styles' );
@@ -157,7 +154,7 @@ function frontpage_template() {
 
     if ( is_front_page() || is_page_template( 'front-page.php' ) ) {
         $frontpage_css = "$assets_path/css/frontpage.css";
-        outlet_enqueue_style( 'frontpage', $frontpage_css );
+        inmobiliaria_enqueue_style( 'frontpage', $frontpage_css );
     }
 }
 add_action( 'wp_enqueue_scripts', 'frontpage_template' );

@@ -58,7 +58,7 @@
                 ?>
             </div>
         </section>
-        <section class="block container--posts container--related-posts">
+        <section class="block posts--body container--related-posts">
             <?php
                 $categories = wp_get_post_categories(get_the_ID());
                 $tags = wp_get_post_tags(get_the_ID());

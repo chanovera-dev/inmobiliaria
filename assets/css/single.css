@@ -65,8 +65,6 @@ header.block {
         margin-bottom: 2.5rem;
         border: 0.063rem solid var(--wp--preset--color--accent-6);
         border-radius: 1rem;
-        corner-shape: inherit;
-        
 
         & .author-name {
             margin-bottom: 1rem;

@@ -74,7 +74,7 @@ function setup_inmobiliaria() {
     add_theme_support( 'post-thumbnails', [ 'post', 'page', 'property' ] );
     set_post_thumbnail_size( 350, 200, true );
 
-    add_image_size( 'post-header-thumbnail', 500, 400, true );
+    add_image_size( 'post-header-thumbnail', 400, 400, true );
 
     add_theme_support( 'wp-block-styles' );
     add_theme_support( 'align-wide' );

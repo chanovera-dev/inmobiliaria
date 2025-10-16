@@ -132,8 +132,8 @@ textarea {
   border-color: var(--wp--preset--color--accent-6);
 
   &:hover {
-    color: light-dark(var(--wp--preset--color--green), var(--wp--preset--color--green));
-    border-color: light-dark(var(--wp--preset--color--green), var(--wp--preset--color--green));
+    color: light-dark(var(--wp--preset--color--green), var(--green--lighter));
+    border-color: light-dark(var(--wp--preset--color--green), var(--green--lighter));
   }
 }
 
