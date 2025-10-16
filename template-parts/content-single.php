@@ -1,7 +1,7 @@
 <div id="main" class="site-main" role="main">
     <article class="page" id="<?php the_ID(); ?>">
         <header class="block">
-            <div class="content">
+            <div class="content heading">
                 <div class="blobpit"></div>
                 <?php
                 if ( has_post_thumbnail() ) {

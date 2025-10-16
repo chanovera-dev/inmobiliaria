@@ -11,4 +11,25 @@ License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-body {height: 3000px;} /* temp */
+body {
+    height: 3000px; /* temp */
+    background-color: light-dark(var(--wp--preset--color--base), var(--base-dark));
+    color: light-dark(var(--wp--preset--color--contrast), var(--contrast-dark));
+
+    &.is-chromium {
+        & .content.heading {
+            corner-shape: squircle;
+        }
+    }
+}
+
+.block {
+    & .content {
+        width: min(100% - 2.5rem, 85.375rem);
+        margin-inline: auto;
+
+        &.heading {
+            width: min(100% - 2.5rem, 60rem);
+        }
+    }
+}

@@ -13,10 +13,15 @@
 					"name": "Base",
 					"slug": "base"
 				},
-                {
+				{
+					"color": "#ffffff7c",
+					"name": "Base Alpha",
+					"slug": "base-alpha"
+				},
+				{
 					"color": "#000000",
-					"name": "Base Dark",
-					"slug": "base-dark"
+					"name": "Contrast",
+					"slug": "Contrast"
 				},
                 {
 					"color": "color-mix(in srgb, currentColor 20%, transparent)",
@@ -175,7 +180,7 @@
 		"typography": {
 			"fontFamily": "var:preset|font-family|manrope",
 			"fontSize": "var:preset|font-size|medium",
-			"fontWeight": "300",
+			"fontWeight": "400",
 			"letterSpacing": "-0.1px",
 			"lineHeight": "1.7"
 		},
@@ -218,7 +223,7 @@
 				"typography": {
 					"fontFamily": "var:preset|font-family|fira-code",
 					"fontSize": "var:preset|font-size|medium",
-					"fontWeight": "300"
+					"fontWeight": "400"
 				},
 				"color": {
 					"background": "var:preset|color|accent-5",
@@ -420,14 +425,14 @@
 				},
 				"typography": {
 					"fontSize": "var:preset|font-size|medium",
-					"fontWeight": "300"
+					"fontWeight": "400"
 				},
 				"elements": {
 					"cite": {
 						"typography": {
 							"fontSize": "var:preset|font-size|small",
 							"fontStyle": "normal",
-							"fontWeight": "300"
+							"fontWeight": "400"
 						},
 						"css": "& sub { font-size: 0.65em }"
 					}
@@ -455,7 +460,7 @@
 			"core/pullquote": {
 				"typography": {
 					"fontSize": "var:preset|font-size|xx-large",
-					"fontWeight": "300",
+					"fontWeight": "400",
 					"lineHeight": "1.6"
 				},
 				"elements": {
@@ -477,7 +482,7 @@
 			"core/query-pagination": {
 				"typography": {
 					"fontSize": "var:preset|font-size|medium",
-					"fontWeight": "500"
+					"fontWeight": "700"
 				}
 			},
 			"core/search": {

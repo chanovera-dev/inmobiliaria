@@ -1,0 +1,163 @@
+<?php
+/**
+ * Theme Templates and Asset Loader
+ *
+ * Handles enqueueing of CSS and JS assets for different page templates and conditions.
+ * 
+ * This file provides helper functions to enqueue styles and scripts with automatic
+ * versioning, and selectively loads assets for:
+ * - Single posts and pages (including featured images, related posts, and comments)
+ * - Post listing pages (home, archives, search)
+ * - 404 error page
+ * - Front page
+ *
+ * The goal is to optimize performance by loading only the necessary assets
+ * for each page type, reducing unnecessary HTTP requests.
+ *
+ * @package Inmobiliaria
+ * @since 1.0.0
+ */
+
+/**
+ * Helper: Enqueue style file with automatic versioning
+ *
+ * @param string $handle
+ * @param string $path
+ * @param string $media
+ * @return void
+ */
+function outlet_enqueue_style( $handle, $path, $media = 'all' ) {
+    $uri = get_template_directory_uri();
+    wp_enqueue_style( $handle, $uri . $path, [], get_asset_version( $path ), $media );
+}
+
+/**
+ * Helper: Enqueue script file with automatic versioning
+ *
+ * @param string $handle
+ * @param string $path
+ * @return void
+ */
+function outlet_enqueue_script( $handle, $path ) {
+    $uri = get_template_directory_uri();
+    wp_enqueue_script( $handle, $uri . $path, [], get_asset_version( $path ), true );
+}
+
+/**
+ * Enqueues styles and scripts for single posts and pages.
+ *
+ * Loads page-specific assets when viewing single posts or pages.
+ * Includes optional styles for featured images, related posts,
+ * and comments, as well as JS effects such as parallax and blur typing.
+ * Related posts and comment styles are loaded conditionally.
+ *
+ * @since 1.0.0
+ * @return void
+ */
+function page_template() {
+    $assets_path = '/assets';
+
+    if ( is_page() or is_single() ) {
+        $page_css = "$assets_path/css/page.css";
+        $single_css = "$assets_path/css/single.css";
+        $related_css = "$assets_path/css/posts.css";
+        $comments_css = "$assets_path/css/comments.css";
+        $page_thumbnail = "$assets_path/css/page-thumbnail.css";
+        $parallax_hero = "$assets_path/js/parallax-hero.js";
+
+        outlet_enqueue_style( 'page', $page_css );
+        outlet_enqueue_script( 'blur-typing', $blur_typing );
+
+        $post_id = get_queried_object_id();
+        if ( $post_id && has_post_thumbnail( $post_id ) ) {
+            outlet_enqueue_style( 'page-thumbnail', $page_thumbnail );
+            outlet_enqueue_script( 'parallax-hero', $parallax_hero );
+        }
+
+        if ( is_single() ) {
+            outlet_enqueue_style( 'single', $single_css );
+
+            $related_posts = get_posts( [
+                'post__not_in' => [ $post_id ],
+                'posts_per_page' => 1,
+                'category__in' => wp_get_post_categories( $post_id ),
+                'tag__in' => wp_get_post_tags( $post_id, [ 'fields' => 'ids' ] ),
+            ] );
+
+            if ( ! empty( $related_posts ) ) {
+                outlet_enqueue_style( 'related-posts', $related_css );
+            }
+
+            if ( comments_open() ) {
+            outlet_enqueue_style( 'custom-comments', $comments_css );
+            }
+        }
+    }
+}
+add_action( 'wp_enqueue_scripts', 'page_template' );
+
+/**
+ * Enqueues styles and scripts for post listings pages.
+ *
+ * Loads specific CSS and JS assets for the blog home, archives, 
+ * and search results pages. Includes pagination styles only 
+ * when pagination links are present.
+ *
+ * @since 1.0.0
+ * @return void
+ */
+function posts_styles() {
+    $assets_path = '/assets';
+
+    if ( is_home() or is_archive() or is_search() ) {
+        $posts_css = "$assets_path/css/posts.css";
+        $pagination_css = "$assets_path/css/pagination.css";
+        $blur_typing = "$assets_path/js/blur-typing.js";
+
+        outlet_enqueue_style( 'posts', $posts_css );
+        outlet_enqueue_script( 'blur-typing', $blur_typing );
+        
+        if ( paginate_links() ) {
+            outlet_enqueue_style( 'pagination', $pagination_css );
+        }
+    }
+}
+add_action( 'wp_enqueue_scripts', 'posts_styles' );
+
+/**
+ * Enqueues styles specifically for 404 error page
+ * 
+ * Loads custom CSS file only when viewing 404 page
+ * to optimize performance and reduce unnecessary loading
+ *
+ * @since 1.0.0
+ * @return void
+ */
+function page404_styles() {
+    $assets_path = '/assets';
+
+    if ( is_404() ) {
+        $error404_css = "$assets_path/css/error404.css";
+        outlet_enqueue_style( 'error404', $error404_css );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'page404_styles' );
+
+/**
+ * Frontpage template styles
+ * 
+ * Loads custom CSS file only when viewing the front page
+ * to optimize performance and reduce unnecessary loading
+ *
+ * @since 1.0.0
+ * @return void
+ */
+function frontpage_template() {
+    $assets_path = '/assets';
+
+    if ( is_front_page() || is_page_template( 'front-page.php' ) ) {
+        $frontpage_css = "$assets_path/css/frontpage.css";
+        outlet_enqueue_style( 'frontpage', $frontpage_css );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'frontpage_template' );
