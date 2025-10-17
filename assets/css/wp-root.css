@@ -11,6 +11,7 @@
     --secondary-dark: oklch(from var(--wp--preset--color--secondary) clamp(.2, l + 0, 0) calc(c * 1) calc(h * 1));
 
     --green--lighter: oklch(from var(--wp--preset--color--green) calc(l + .2) c h);
+    --green--lighter-plus: oklch(from var(--wp--preset--color--green-alpha) calc(l + .3) c calc(h * .88));
     --green--darker: oklch(from var(--wp--preset--color--green) clamp(0, l - 0.3, 1) calc(c * 1.1) calc(h * .82));
 }
 

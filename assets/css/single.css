@@ -117,8 +117,8 @@ header.block {
         .block {
             & .is-layout-constrained {
                 > *:not(.wp-block-separator) {
-                    margin-left: 20px !important;
-                    margin-right: 20px !important;
+                    margin-left: 1.25rem !important;
+                    margin-right: 1.25rem !important;
                 }
             }
         }
