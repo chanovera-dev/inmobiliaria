@@ -133,3 +133,54 @@ function custom_comment_avatar_size($avatar) {
     return $avatar;
 }
 add_filter('get_avatar', 'custom_comment_avatar_size', 10, 1);
+
+/****************************************************************************************************************
+ * E A S Y B R O K E R
+ ****************************************************************************************************************/
+
+/**
+ * Fetches property data from the EasyBroker API.
+ *
+ * This function connects to the EasyBroker REST API and retrieves a list of properties 
+ * according to the specified filters. It is primarily used to display property listings 
+ * on the website (for example, in sales or rental sections). 
+ *
+ * Parameters:
+ * - $operation_type (string|null): Optional filter for operation type ('sale', 'rent', etc.).
+ * - $limit (int): Maximum number of properties to fetch (default: 12).
+ *
+ * Returns:
+ * - array: An associative array containing property data from EasyBroker.
+ *           Returns an empty array if the API request fails or if no data is available.
+ *
+ * Example usage:
+ *   $properties = eb_get_properties('sale', 10);
+ *   foreach ($properties as $property) {
+ *       echo $property['title'];
+ *   }
+ */
+function eb_get_properties($operation_type = null, $limit = 12) {
+    $api_key = EASYBROKER_API_KEY;
+    $url = 'https://api.easybroker.com/v1/properties?limit=' . intval($limit);
+
+    // Add operation type filter if specified (e.g., 'sale', 'rent')
+    if ($operation_type) {
+        $url .= '&operation_type=' . urlencode($operation_type);
+    }
+
+    $args = array(
+        'headers' => array(
+            'X-Authorization' => $api_key
+        ),
+        'timeout' => 15,
+    );
+
+    $response = wp_remote_get($url, $args);
+
+    // Return empty array if API request fails
+    if (is_wp_error($response)) return [];
+
+    // Decode JSON response and return property content if available
+    $body = json_decode(wp_remote_retrieve_body($response), true);
+    return $body['content'] ?? [];
+}

@@ -215,7 +215,9 @@ img {
                 list-style: none;
                 min-width: 250px;
                 font-size: var(--wp--preset--font-size--small);
-                li {
+                
+                & li {
+                    & a {
                     display: flex;
                     align-items: center;
                     height: 27px;
@@ -226,6 +228,7 @@ img {
                     &:hover {
                         background-color: light-dark(var(--green--lighter-plus), var(--wp--preset--color--green-alpha));
                     }
+                }
                 }
             }
         }
