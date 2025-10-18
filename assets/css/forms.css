@@ -113,6 +113,15 @@ textarea {
     &.yellow {
       background-color: #ffe900;
     }
+
+    &:is(.tag,.category) {
+      box-shadow: none;
+      background-color: transparent;
+      border-width: 1px;
+      border-style: solid;
+      text-transform: capitalize;
+      height: auto;
+    }
 }
 
 .primary,
