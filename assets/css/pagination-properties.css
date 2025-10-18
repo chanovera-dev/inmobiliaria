@@ -1,0 +1,77 @@
+.site-main {
+    & .block.properties {
+        & .content {
+            & .properties--list {
+                & .pagination {
+                    grid-column: 1 / -1;
+                    margin-inline: auto;
+                    display: flex;
+                    align-items:center;
+                    position: relative;
+                    overflow: hidden;
+
+                    & .page-numbers {
+                        position:relative;
+                        display: grid;
+                        place-content: center;
+                        width: 48px;
+                        height: 48px;
+                        transition: all .3s ease;
+
+                        &.current {
+                            &:before {
+                                position: absolute;
+                                content: '';
+                                bottom: 0;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                width: 15px;
+                                height: 4px;
+                                background-color: var(--wp--preset--color--green);
+                            }
+                        }
+
+                        &:hover:not(.current) {
+                            background-color: light-dark(var(--wp--preset--color--secondary), var(--secondary-dark));
+                            &:before {
+                                position: absolute;
+                                content: '';
+                                bottom: 0;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                width: 0;
+                                height: 4px;
+                                background-color: var(--green--lighter);
+                                animation: mark-pagination .3s ease forwards;
+                            }
+                        }
+                    }
+
+                    & :is(.page-numbers.prev,.page-numbers.next) {
+                        font-size: 0;
+                    }
+
+                        & > *:not(:last-child):after {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            content: '';
+                            width: 1px;
+                            height: 43.8px;
+                            background: linear-gradient(to bottom, transparent 10%, var(--line-1) 40%, var(--line-1) 60%, transparent 90%);
+                        }
+                }
+            }
+        }
+    }
+}
+
+@keyframes mark-pagination {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 15px;
+    }
+}

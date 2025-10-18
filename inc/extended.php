@@ -134,6 +134,48 @@ function custom_comment_avatar_size($avatar) {
 }
 add_filter('get_avatar', 'custom_comment_avatar_size', 10, 1);
 
+function wp_breadcrumbs() {
+    $separator = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></svg>';
+    $icon_home = '<svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12.7596C5 11.4019 5 10.723 5.27446 10.1262C5.54892 9.52949 6.06437 9.08769 7.09525 8.20407L8.09525 7.34693C9.95857 5.7498 10.8902 4.95123 12 4.95123C13.1098 4.95123 14.0414 5.7498 15.9047 7.34693L16.9047 8.20407C17.9356 9.08769 18.4511 9.52949 18.7255 10.1262C19 10.723 19 11.4019 19 12.7596V17C19 18.8856 19 19.8284 18.4142 20.4142C17.8284 21 16.8856 21 15 21H9C7.11438 21 6.17157 21 5.58579 20.4142C5 19.8284 5 18.8856 5 17V12.7596Z" stroke="currentColor"/><path d="M14.5 21V16C14.5 15.4477 14.0523 15 13.5 15H10.5C9.94772 15 9.5 15.4477 9.5 16V21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    $home = 'Inicio';
+    $current = 'Propiedades en venta';
+    
+    $homeLink = get_bloginfo('url');
+    $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+
+    echo '<nav class="breadcrumbs">';
+    echo '<a class="go-home" href="' . esc_url($homeLink) . '">' . $icon_home . esc_html($home) . '</a>' . $separator;
+
+    // Para el template archive-property.php
+    if ( is_page_template('archive-property.php') || is_post_type_archive('property') ) {
+        if ($paged === 1) {
+            echo '<h1 class="page-title">' . esc_html($current) . '</h1>';
+        } else {
+            echo '<h1 class="page-title">' . esc_html('Página ' . $paged) . '</h1>';
+        }
+
+        // Navegación entre páginas
+        $prev_link = get_previous_posts_page_link();
+        $next_link = get_next_posts_page_link();
+
+        if ($prev_link || $next_link) {
+            echo '<div class="breadcrumb-pagination">';
+            
+            if ($prev_link) {
+                echo '<a class="breadcrumb-prev" href="' . esc_url($prev_link) . '"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/></svg></a>';
+            }
+
+            if ($next_link) {
+                echo '<a class="breadcrumb-next" href="' . esc_url($next_link) . '"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/></svg></a>';
+            }
+
+            echo '</div>';
+        }
+    }
+
+    echo '</nav>';
+}
+
 /****************************************************************************************************************
  * E A S Y B R O K E R
  ****************************************************************************************************************/
@@ -184,3 +226,71 @@ function eb_get_properties($operation_type = null, $limit = 12) {
     $body = json_decode(wp_remote_retrieve_body($response), true);
     return $body['content'] ?? [];
 }
+
+/****************************************************************************************************************
+ * P R O P E R T I E S
+ ****************************************************************************************************************/
+
+/**
+ * Retrieves and caches a list of property locations grouped by state and city.
+ *
+ * This function collects location data (state, city, and neighborhood) from published
+ * property posts, organizes them into a structured array, removes duplicates, and
+ * sorts them alphabetically. The result is cached using a transient for performance.
+ *
+ * @return array An associative array of locations grouped by state.
+ */
+function get_property_locations() {
+    $locations = get_transient('property_locations');
+
+    // Return cached data if available
+    if ($locations !== false) {
+        return $locations;
+    }
+
+    // Get a limited number of published properties
+    $properties = get_posts([
+        'post_type' => 'property',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+    ]);
+
+    $locations = [];
+
+    if ($properties) {
+        foreach ($properties as $prop) {
+            $loc = get_post_meta($prop->ID, 'eb_location', true);
+            if ($loc) {
+                // Split the location string and trim extra spaces
+                $parts = array_map('trim', explode(',', $loc));
+
+                // Expected format: [neighborhood, city, state]
+                $neighborhood = $parts[0] ?? '';
+                $city         = $parts[1] ?? '';
+                $state        = $parts[2] ?? '';
+
+                // Group cities by state
+                if ($state && $city) {
+                    $locations[$state][] = $city;
+                }
+            }
+        }
+
+        // Remove duplicates and sort alphabetically
+        foreach ($locations as $state => $cities) {
+            $locations[$state] = array_unique($cities);
+            sort($locations[$state]);
+        }
+        ksort($locations);
+    }
+
+    // Cache the results for one day
+    set_transient('property_locations', $locations, DAY_IN_SECONDS);
+
+    return $locations;
+}
+
+// Clear the cached data when a property is saved or updated
+add_action('save_post_property', function() {
+    delete_transient('property_locations');
+});

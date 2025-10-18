@@ -1,6 +1,6 @@
 <div id="main" class="site-main" role="main">
     <article class="page" id="<?php the_ID(); ?>">
-        <header class="block">
+        <header class="block page">
             <div class="content heading">
                 <div class="backdrop"></div>
                 <?php
@@ -87,7 +87,7 @@
                 if ($related_posts->have_posts()) :
             ?>
             <div class="content related-posts--title">
-                <h2><?php echo esc_html_e( 'Contenido relacionado', 'outlet' ); ?></h2>
+                <h2><?php echo esc_html_e( 'Contenido relacionado', 'inmobiliaria' ); ?></h2>
             </div>
             <div class="content related-posts--list">
                 <?php 

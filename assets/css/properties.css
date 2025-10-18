@@ -1,0 +1,344 @@
+.site-main {
+    & .block.properties {
+        & .content {
+            padding: 50px 0;
+            display: grid;
+            gap: 30px;
+
+            & .properties--sidebar {
+                & .property-filter-form {
+                    display: grid;
+                    gap: 1.5rem;
+
+                    & .filter-navigation.menu {
+                        display: grid;
+                        gap: 1.5rem;
+
+                        & > .menu-item-has-children {
+                            & > .button-for-submenu {
+                                width: 100%;
+                                color: light-dark(var(--wp--preset--color--contrast), var(--wp--preset--color--contrast));
+                            }
+
+                            & > .sub-menu {
+                                margin-top: 1rem;
+                                padding: 10px;
+                                border: 1px solid light-dark(var(--wp--preset--color--accent-6), var(--wp--preset--color--accent-6));
+                                background-color: light-dark(var(--wp--preset--color--secondary), var(--secondary-dark));
+                                border-radius: 8px;
+
+                                & > .menu-item-has-children {
+                                    & .wrapper-for-title {
+                                        width: 100%;
+                                        padding: 0;
+                                        padding-right: 7px;
+                                        box-shadow: none;
+
+                                        & .button-for-submenu {
+                                            display: grid;
+                                            width: 13px;
+                                            height: 13px;
+                                            place-content: center;
+                                            background-color: transparent;
+                                            border: none;
+                                        }
+                                    }
+
+                                    & > .sub-menu {
+                                        padding-left: 1rem;
+                                    }
+                                }
+                            }
+
+                            &.state {
+                                & > .sub-menu {
+                                    & > li:not(:last-child) {
+                                        margin-bottom: 1rem;
+                                    }
+
+                                    & li {
+                                        & .sub-menu {
+                                            height: 1000px;
+                                            max-height: 0;
+                                            overflow: hidden;
+                                        }
+                                    }
+                                }
+                            }
+
+                            &:is(.price,.size) {
+                                & .sub-menu {
+                                    & li {
+                                        display: grid;
+                                        grid-template-columns: 1fr 1fr;
+                                        gap: 0 .5rem;
+
+                                        & label {
+                                            grid-column: 1 / -1;
+                                        }
+
+                                        &:not(:last-child) {
+                                            margin-bottom: 1rem;
+                                        }
+                                    }
+                                }
+                                & :is(.price-range,.land-range,.construction-range) {
+                                    display: none;
+                                }
+                            }
+
+                            &.rooms {
+                                & .backdrop {
+                                    display: none;
+                                }
+
+                                & .sub-menu {
+                                    display: grid !important;
+                                    grid-template-columns: 1fr 1fr;
+                                    gap: 0 .5rem;
+
+                                    & li {
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    & .filter-buttons {
+                        & :first-child {
+                            margin-right: .5rem;
+                        }
+                    }
+                }
+
+                & ul {
+                    padding-left: 0;
+                    list-style: none;
+                    font-size: var(--wp--preset--font-size--small);
+
+                    & li {
+                        & p.checkbox-filter-properties {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            height: 27px;
+                            padding: 0 10px;
+                            border-radius: 6px;
+                            transition: background-color .2s ease-in-out;
+
+                            & input[type="checkbox"]:not(:checked) + label:after, [type="checkbox"]:checked + label:after {
+                                top: 0.48em;
+                                left: 0.19em;
+                            }
+
+                            &:hover {
+                                background-color: light-dark(var(--green--lighter-plus), var(--wp--preset--color--green));
+                            }
+                        }
+                    }
+                }
+
+                input[type=number] {
+                    background-color: light-dark(var(--wp--preset--color--base), var(--base-dark)) !important;
+                    font-size: var(--wp--preset--font-size--small);
+
+                    &::placeholder {
+                        font-size: var(--wp--preset--font-size--small);
+                    }
+                }
+            }
+
+            & .properties--list {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                place-content: start;
+                gap: 30px;
+
+                & .property {
+                    display: grid;
+                    grid-template-rows: auto 1fr;
+                    font-size: var(--wp--preset--font-size--small);
+                    box-shadow: rgba(50, 50, 93, 0.125) 0px 13px 27px -5px, rgba(0, 0, 0, 0.15) 0px 8px 16px -8px;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    opacity: 0;
+                    transform: translateY(-100px);
+                    animation: property--animation .6s ease-in-out forwards;
+
+                    & .property--header {
+                        position: relative;
+                        aspect-ratio: 4 / 3;
+                        overflow: hidden;
+                        border-radius: 8px 8px 0 0;
+
+                        & .wp-post-image {
+                            position: absolute;
+                            top: 50%; left: 50%; transform: translate(-50%, -50%);
+                            width: 100%;
+                            aspect-ratio: 1 / 1;
+                            z-index: -2;
+                            transition: transform .3s ease-in-out, filter .3s ease-in-out;
+                        }
+
+                        &::before,
+                        &::after {
+                            position: absolute;
+                            content: '';
+                            top: 0; left: 0; width: 100%; height: 100%;
+                            border: 1px solid light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849));
+                            mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849)), light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 50%);
+                            border-radius: inherit;
+                            corner-shape: inherit;
+                            z-index: -1;
+                        }
+
+                        &::after {
+                            mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 76%, light-dark(hsla(0, 0%, 100%, 0.644), hsla(0, 0%, 100%, 0.644)));
+                        }
+
+                        & .glass-reflex {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(255, 255, 255, 0.1);
+                            pointer-events: none;
+                            transform: skewX(340deg) translateX(-70%);
+                            transition: transform .6s ease-in-out, filter .5s ease-in-out;
+                            filter: blur(5px);
+                            z-index: 0;
+                        }
+                    }
+
+                    & .property--body {
+                        display: grid;
+                        grid-template-rows: 1fr auto;
+                        background-color: light-dark(var(--wp--preset--color--base), var(--secondary-dark));
+                        padding: 20px;
+
+                        & .property--body--heading {
+                            display: grid;
+                            grid-template-rows: 1fr auto;
+                            padding-bottom: 10px;
+                            
+                            & .property--permalink {
+                                transition: color .3s ease-in-out;
+
+                                & .property--title {
+                                    text-transform: lowercase;
+                                    font-size: var(--wp--preset--font-size--large);
+                                    font-weight: 600;
+                                    
+                                    &::first-letter {
+                                        text-transform: capitalize;
+                                    }
+                                }
+
+                                &:hover {
+                                    color: light-dark(var(--green--lighter), var(--wp--preset--color--green));
+                                }
+                            }
+
+                            & .location {
+                                & svg {
+                                    margin-right: 10px;
+                                    position: relative;
+                                    top: 3px;
+                                }
+                            }
+                        }
+
+                        & .property--metadata {
+                            display: grid;
+                            gap: 0 20px;
+                            align-items: end;
+                            grid-template-columns: 1fr auto;
+                            grid-template-rows: 1fr 1fr;
+                            padding-top: 10px;
+                            border-top: 2px dashed var(--wp--preset--color--accent-6);
+                            
+                            & ul {
+                                padding-left: 0;
+                                list-style: none;
+                                display: flex;
+                                align-items: baseline;
+                                gap: 13px;
+                                
+                                & li {
+                                    display: inline-flex;
+                                    align-items: baseline;
+                                    gap: 5px;
+
+                                    &.lot {
+                                        & svg {
+                                            position: relative;
+                                            top: 2px;
+                                        }
+                                    }
+
+                                    &.bedroom {
+                                        & svg {
+                                            position: relative;
+                                            top: 4px;
+                                        }
+                                    }
+                                }
+
+                                &:nth-child(1) {
+                                    grid-row: 1 / 2;
+                                }
+
+                                &:nth-child(2) {
+                                    grid-row: 2 / 3;
+                                }
+                            }
+
+                            & .price {
+                                position: relative;
+                                top: 2px;
+                                grid-column: 2 / 3;
+                                grid-row: 1 / 3;
+
+                                & h3 {
+                                    font-weight: 600;
+                                }
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        & .property--header {
+                            & .wp-post-image {
+                                transform: translate(-50%, -50%) scale(1.1);
+                                filter: brightness(1.1);
+                            }
+
+                            & .glass-reflex {
+                                transform: skewX(340deg) translateX(70%);
+                                filter: blur(8px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(width > 1024px) {
+    .site-main {
+        & .block.properties {
+            & .content {
+                grid-template-columns: 250px 1fr;
+            }
+        }
+    }
+}
+
+@keyframes property--animation {
+    0% {opacity: 0; transform: translateY(-100px);}
+    100% {opacity: 1; transform: translateY(0);}
+}

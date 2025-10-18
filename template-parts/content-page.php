@@ -1,6 +1,6 @@
 <div id="main" class="site-main" role="main"> 
     <article class="page" id="<?php the_ID(); ?>">
-        <header class="block">
+        <header class="block page">
             <div class="content heading">
                 <div class="backdrop"></div>
                 <?php

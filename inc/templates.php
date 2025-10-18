@@ -158,3 +158,19 @@ function frontpage_template() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'frontpage_template' );
+
+
+function properties_template() {
+    $assets_path = '/assets';
+
+    if ( is_page_template( 'archive-property.php' ) ) {
+        $breadcrumbs_css = "$assets_path/css/breadcrumbs.css";
+        $properties_css = "$assets_path/css/properties.css";
+        $pagination_css = "$assets_path/css/pagination-properties.css";
+
+        inmobiliaria_enqueue_style( 'breadcrumbs', $breadcrumbs_css );
+        inmobiliaria_enqueue_style( 'properties', $properties_css );
+        inmobiliaria_enqueue_style( 'pagination', $pagination_css );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'properties_template' );

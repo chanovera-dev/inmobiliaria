@@ -34,6 +34,11 @@
 					"slug": "green"
 				},
 				{
+					"color": "#ffe900",
+					"name": "Yellow",
+					"slug": "yellow"
+				},
+				{
 					"color": "#1271284d",
 					"name": "Green Alpha",
 					"slug": "green-alpha"
