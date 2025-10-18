@@ -307,6 +307,26 @@ add_action('save_post_property', function() {
     delete_transient('property_locations');
 });
 
+/**
+ * Registers the "Property" custom post type (CPT) for real estate listings.
+ * 
+ * This function is used as a fallback in case the SCF plugin is not available
+ * to register the 'property' post type. It sets up basic labels, supports,
+ * archive behavior, REST API availability, and the admin menu icon.
+ */
+// function eb_register_post_type() {
+//     register_post_type('property', [
+//         'label' => 'Propiedades',
+//         'public' => true,
+//         'menu_icon' => 'dashicons-admin-home',
+//         'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+//         'has_archive' => true,
+//         'rewrite' => ['slug' => 'properties'],
+//         'show_in_rest' => true,
+//     ]);
+// }
+// add_action('init', 'eb_register_post_type');
+
 /****************************************************************************************************************
  * A J A X   P R O P E R T I E S
  ****************************************************************************************************************/

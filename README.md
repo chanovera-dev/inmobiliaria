@@ -13,7 +13,7 @@ El proyecto se integra con la **API de EasyBroker** para mostrar automáticament
 # Requisitos
 - WordPress 6.0+
 - PHP 8.0+
-- Plugin ACF Pro (recomendado)
+- Plugin Secure Custom Fields (Optional)
 - API Key de EasyBroker
 
 # Licencia
