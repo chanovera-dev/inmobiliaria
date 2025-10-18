@@ -247,6 +247,7 @@
                         }
 
                         & .type {
+                            font-size: calc(var(--wp--preset--font-size--small) - 3px);
                             text-transform: uppercase;
                             letter-spacing: 2px;
                             padding: 5px 7px;
