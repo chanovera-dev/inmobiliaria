@@ -114,13 +114,22 @@ textarea {
       background-color: #ffe900;
     }
 
-    &:is(.tag,.category) {
+    &:is(.tag,.category, .type) {
       box-shadow: none;
       background-color: transparent;
       border-width: 1px;
       border-style: solid;
       text-transform: capitalize;
       height: auto;
+    }
+
+    &.type {
+      font-size: calc(var(--wp--preset--font-size--small) - 3px);
+      padding: 8px 10px;
+      border-width: 0;
+      background-color: #000;
+      color: #fff;
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px, rgba(0, 0, 0, 0.2) 0px 7px 13px -3px, rgba(255, 255, 255, 0.2) 0px -2px 0px inset;
     }
 }
 
