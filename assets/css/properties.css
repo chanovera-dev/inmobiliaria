@@ -36,7 +36,7 @@
                                 border: 1px solid light-dark(var(--wp--preset--color--accent-6), var(--wp--preset--color--accent-6));
                                 background-color: light-dark(var(--wp--preset--color--secondary), var(--secondary-dark));
                                 border-radius: 8px;
-                                max-height: 1000px;
+                                max-height: 10000px;
                                 overflow: hidden;
 
                                 &.close {
@@ -94,7 +94,7 @@
                                             &.open {
                                                 padding: 10px 0;
                                                 padding-left: 1rem;
-                                                max-height: 200vh;
+                                                max-height: 10000px;
                                             }
                                         }
                                     }
