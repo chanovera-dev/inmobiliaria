@@ -109,9 +109,11 @@ function posts_styles() {
     $assets_path = '/assets';
 
     if ( is_home() or is_archive() or is_search() ) {
+        $breadcrumbs_css = "$assets_path/css/breadcrumbs.css";
         $posts_css = "$assets_path/css/posts.css";
         $pagination_css = "$assets_path/css/pagination.css";
 
+        inmobiliaria_enqueue_style( 'breadcrumbs', $breadcrumbs_css );
         inmobiliaria_enqueue_style( 'posts', $posts_css );
         
         if ( paginate_links() ) {

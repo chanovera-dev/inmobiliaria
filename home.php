@@ -18,12 +18,7 @@ get_header(); ?>
 
 <main id="main" class="site-main" role="main">
 
-    <!-- Archive Page Header -->
-    <header class="block posts--header">
-        <div class="content">
-            <h1 class="page-title"><?php esc_html_e( 'Últimos artículos', 'inmobiliaria' ); ?></h1>
-        </div>
-    </header>
+    <?php require_once locate_template('templates/breadcrumbs.php' ); ?>
 
     <!-- Archive Posts Section -->
     <section class="block posts--body">

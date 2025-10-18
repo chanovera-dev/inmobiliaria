@@ -185,7 +185,30 @@ function wp_breadcrumbs() {
         }
     }
 
-    echo '</nav>';
+    if ( is_home() ) {
+        if ($paged === 1) {
+            echo '<h1 class="page-title">' . esc_html_e( 'Últimos artículos', 'inmobiliaria' ) . '</h1>';
+        } else {
+            echo '<h1 class="page-title">' . esc_html('Página ' . $paged) . '</h1>';
+        }
+    }
+
+    if ( is_search() ) {
+        if ($paged === 1) {
+            echo '<h1 class="page-title">'; esc_html_e('Búsqueda de "', 'inmobiliaria'); echo the_search_query(); esc_html_e('"', 'inmobiliaria') . '</h1>';
+        } else {
+            echo '<h1 class="page-title">' . esc_html('Página ' . $paged) . '</h1>';
+        }
+    }
+
+    if ( is_archive() ) {
+        if ($paged === 1) {
+            the_archive_title( '<h1 class="page-title">', '</h1>' );
+        } else {
+            echo '<h1 class="page-title">' . esc_html('Página ' . $paged) . '</h1>';
+        }
+    }
+    
 }
 
 /****************************************************************************************************************
