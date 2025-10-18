@@ -1,6 +1,6 @@
 .site-main {
-    & .block.properties {
-        & .content {
+    & .block.properties--wrapper {
+        & .content.properties {
             & .properties--list {
                 & .pagination {
                     grid-column: 1 / -1;

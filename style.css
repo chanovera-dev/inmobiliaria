@@ -69,7 +69,7 @@ body {
 
         & .main-navigation,
         & .property,
-        & .block.properties .content .properties--sidebar .property-filter-form .filter-navigation.menu > .menu-item-has-children > .sub-menu {
+        & .block.properties--wrapper .content.properties .properties--sidebar .property-filter-form .filter-navigation.menu > .menu-item-has-children > .sub-menu {
             border-radius: 1.2rem !important;
             corner-shape: squircle;
         }
@@ -77,6 +77,10 @@ body {
         & .property--header {
             border-radius: 1.2rem 1.2rem 0 0!important;
             corner-shape: squircle;
+
+            & .type {
+                border-radius: 1rem !important;
+            }
         }
     }
 }

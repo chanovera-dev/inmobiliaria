@@ -37,9 +37,9 @@
             </button>
             <ul class="sub-menu">
                 <div class="backdrop"></div>
-                <li><p class="checkbox-filter-properties"><input type="checkbox" name="type[]" value="house"><label><?php esc_html_e('Casa', 'inmobiliaria'); ?></label></p></li>
-                <li><p class="checkbox-filter-properties"><input type="checkbox" name="type[]" value="apartment"><label><?php esc_html_e('Departamento', 'inmobiliaria'); ?></label></p></li>
-                <li><p class="checkbox-filter-properties"><input type="checkbox" name="type[]" value="land"><label><?php esc_html_e('Terreno', 'inmobiliaria'); ?></label></p></li>
+                <li><p class="checkbox-filter-properties"><input type="checkbox" name="type[]" value="casa"><label><?php esc_html_e('Casa', 'inmobiliaria'); ?></label></p></li>
+                <li><p class="checkbox-filter-properties"><input type="checkbox" name="type[]" value="departamento"><label><?php esc_html_e('Departamento', 'inmobiliaria'); ?></label></p></li>
+                <li><p class="checkbox-filter-properties"><input type="checkbox" name="type[]" value="terreno"><label><?php esc_html_e('Terreno', 'inmobiliaria'); ?></label></p></li>
             </ul>
         </li>
 
