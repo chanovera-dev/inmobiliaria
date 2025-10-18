@@ -10,17 +10,17 @@ El proyecto se integra con la **API de EasyBroker** para mostrar automáticament
 - **Sistema de filtros y búsqueda:** permite a los usuarios encontrar propiedades por ubicación, tipo, precio, número de habitaciones, etc.  
 - **Optimización SEO y de rendimiento:** incluye etiquetas estructuradas, carga diferida de imágenes y estilos optimizados.  
 
-# Requisitos
+## Requisitos
 - WordPress 6.0+
 - PHP 8.0+
 - Plugin Secure Custom Fields (Optional)
 - API Key de EasyBroker
 
-# Licencia
+## Licencia
 
 Este proyecto se distribuye bajo la licencia GPL 2.0, permitiendo su uso y modificación con fines personales o comerciales.
 
-# Autor
+## Autor
 
 - Desarrollado por Cristian Vera
 - contact@chano.dev
