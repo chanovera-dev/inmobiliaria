@@ -165,24 +165,6 @@ function wp_breadcrumbs() {
         } else {
             echo '<h1 class="page-title">' . esc_html('Página ' . $paged) . '</h1>';
         }
-
-        // Navegación entre páginas
-        $prev_link = get_previous_posts_page_link();
-        $next_link = get_next_posts_page_link();
-
-        if ($prev_link || $next_link) {
-            echo '<div class="breadcrumb-pagination">';
-            
-            if ($prev_link) {
-                echo '<a class="breadcrumb-prev" href="' . esc_url($prev_link) . '"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/></svg></a>';
-            }
-
-            if ($next_link) {
-                echo '<a class="breadcrumb-next" href="' . esc_url($next_link) . '"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/></svg></a>';
-            }
-
-            echo '</div>';
-        }
     }
 
     if ( is_home() ) {
