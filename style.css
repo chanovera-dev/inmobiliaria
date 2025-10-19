@@ -69,7 +69,11 @@ body {
 
         & .main-navigation,
         & .property,
-        & .block.properties--wrapper .content.properties .properties--sidebar .property-filter-form .filter-navigation.menu > .menu-item-has-children > .sub-menu {
+        & .block.properties--wrapper .content.properties .properties--sidebar .property-filter-form .filter-navigation.menu > .menu-item-has-children > .sub-menu,
+        & .site-main .property header.block.property--heading .content .property-data--wrapper:before,
+        & .site-main .property header.block.property--heading .content .property-data--wrapper .property--metadata .property--map,
+        & .site-main .property header.block.property--heading .content .property--big-image--wrapper .property--big-image,
+        & .site-main .property .block.property--details .content.details .property--metadata .property--metadata--list li {
             border-radius: 1.2rem !important;
             corner-shape: squircle;
         }
@@ -119,11 +123,11 @@ img {
     }
 }
 
-& .scroll-down {
+/* & .scroll-down {
     #main-header {
         transform: translateY(-120%);
     }
-}
+} */
 
 .social {
     & .menu {
@@ -169,7 +173,7 @@ img {
 
 .block {
     & .content {
-        width: min(100% - 2.5rem, 85.375rem);
+        width: var(--max-width--content);
         margin-inline: auto;
 
         &.heading {

@@ -3,6 +3,7 @@
 
     /* sizes */
     --heigh-wp-adminbar: 2.875rem;
+    --max-width--content: min(100% - 2.5rem, 85.375rem);
 
     /* colors */
     --base-dark: oklch(from var(--wp--preset--color--base) clamp(0, l + 0, 0) calc(c * 1) calc(h * 1));

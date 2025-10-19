@@ -30,7 +30,7 @@
                     }
                 }
 
-                & h1.page-title {
+                & :is(h1.page-title,h3.property-title) {
                     font-size: var(--wp--preset--font-size--medium);
                     font-weight: 400;
                 }

@@ -105,6 +105,8 @@ function eb_sync_properties() {
                 $public_id = sanitize_text_field( eb_safe_value($p, 'public_id') );
                 $title     = sanitize_text_field( eb_safe_value($p, 'title', 'Untitled') );
 
+                // error_log( print_r( $p, true ) );
+
                 // Check if the property already exists
                 $existing = get_posts([
                     'post_type'      => 'property',
@@ -142,7 +144,7 @@ function eb_sync_properties() {
                 update_post_meta($post_id, 'eb_parking', intval( eb_safe_value($p, 'parking_spaces', 0) ));
                 update_post_meta($post_id, 'eb_lot_size', intval( eb_safe_value($p, 'lot_size', 0) ));
                 update_post_meta($post_id, 'eb_construction_size', intval( eb_safe_value($p, 'construction_size', 0) ));
-
+                
                 // Save a numeric version of price for queries and filters
                 $raw_price = 0;
                 if ( !empty($operation['amount']) ) {

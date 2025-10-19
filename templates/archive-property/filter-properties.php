@@ -20,7 +20,7 @@
             <ul class="sub-menu">
                 <div class="backdrop"></div>
                 <li><p class="checkbox-filter-properties"><input type="checkbox" name="operation[]" value="sale"><label><?php esc_html_e('Venta', 'inmobiliaria'); ?></label></p></li>
-                <li><p class="checkbox-filter-properties"><input type="checkbox" name="operation[]" value="rent"><label><?php esc_html_e('Renta', 'inmobiliaria'); ?></label></p></li>
+                <li><p class="checkbox-filter-properties"><input type="checkbox" name="operation[]" value="rental"><label><?php esc_html_e('Renta', 'inmobiliaria'); ?></label></p></li>
             </ul>
         </li>
 
