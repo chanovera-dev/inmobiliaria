@@ -1,56 +1,129 @@
+// ajax-properties.js
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('.property-filter-form');
-    const results = document.querySelector('.site-main .block.properties--wrapper .content.properties .properties--list');
+  const results = document.querySelector('.properties--list, .properties-list, .properties_results');
+  const form = document.querySelector('.property-filter-form, .propiedades-filtro-form');
 
-    if (!form || !results) return;
+  if (!results) return;
 
-    // Función para enviar AJAX y actualizar resultados
-    const fetchProperties = (paged = 1) => {
-        const data = new FormData(form);
-        data.append('action', 'filter_properties');
-        data.append('paged', paged);
+  // Current page stored in JS
+  let currentPage = parseInt((new URL(window.location)).searchParams.get('paged')) || 1;
 
-        fetch(ajaxurlObj.ajax_url, {
-            method: 'POST',
-            body: data
-        })
-        .then(res => res.text())
-        .then(html => {
-            results.innerHTML = html;
+  // Build FormData with optional extras
+  const buildFormData = (extra = {}) => {
+    const fd = form ? new FormData(form) : new FormData();
+    Object.keys(extra).forEach(k => fd.append(k, extra[k]));
+    if (!fd.get('action')) fd.append('action', 'filter_properties');
+    return fd;
+  };
 
-            // Scroll suave al top del contenedor de resultados
-            results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Fetch + render
+  const fetchProperties = async (paged = 1, pushState = true) => {
+    try {
+      results.classList.add('is-loading');
+      const fd = buildFormData({ paged });
 
-            // Actualizar URL en la barra del navegador
-            const url = new URL(window.location);
-            if (paged > 1) {
-                url.searchParams.set('paged', paged);
-            } else {
-                url.searchParams.delete('paged');
-            }
-            window.history.pushState({}, '', url);
-        });
-    };
+      const res = await fetch(ajax_object.ajaxurl, {
+        method: 'POST',
+        body: fd
+      });
 
-    // Envío del formulario
-    form.addEventListener('submit', e => {
+      if (!res.ok) throw new Error('Network response was not ok');
+
+      const html = await res.text();
+      results.innerHTML = html;
+
+      // update currentPage from the requested page
+      currentPage = parseInt(paged) || 1;
+
+      // reattach handlers
+      bindPaginationLinks();
+
+      // update URL
+      if (pushState) {
+        const url = new URL(window.location);
+        if (currentPage > 1) url.searchParams.set('paged', currentPage);
+        else url.searchParams.delete('paged');
+        window.history.pushState({ paged: currentPage }, '', url);
+      }
+
+      // smooth scroll
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    } catch (err) {
+      console.error('fetchProperties error:', err);
+    } finally {
+      results.classList.remove('is-loading');
+    }
+  };
+
+  // Parse page number from link href or from rel attribute
+  const parsePageFromLink = (link) => {
+    let page = null;
+    // 1) Try ?paged=N
+    try {
+      const url = new URL(link.href, window.location.origin);
+      const p = url.searchParams.get('paged');
+      if (p) return parseInt(p);
+      // 2) Try /page/N/ in pathname
+      const match = url.pathname.match(/page\/(\d+)\/?/);
+      if (match) return parseInt(match[1]);
+    } catch (e) {
+      // ignore
+    }
+
+    // 3) If it's prev/next and we have currentPage, compute
+    const rel = (link.getAttribute('rel') || '').toLowerCase();
+    if (rel === 'prev' && currentPage > 1) return currentPage - 1;
+    if (rel === 'next') return currentPage + 1;
+
+    // 4) fallback to data-paged attr if provided
+    const dp = link.dataset.paged;
+    if (dp) return parseInt(dp);
+
+    return 1;
+  };
+
+  // Attach listeners to pagination links inside results
+  const bindPaginationLinks = () => {
+    // selector covers common WP pagination outputs
+    const links = results.querySelectorAll('.pagination a, .nav-links a, .page-numbers a');
+
+    links.forEach(link => {
+      // remove previous listeners defensivamente by cloning
+      const newLink = link.cloneNode(true);
+      link.parentNode.replaceChild(newLink, link);
+    });
+
+    // re-select after clone
+    const freshLinks = results.querySelectorAll('.pagination a, .nav-links a, .page-numbers a');
+
+    freshLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
         e.preventDefault();
-        fetchProperties();
+        const page = parsePageFromLink(link) || 1;
+        fetchProperties(page, true);
+      });
     });
+  };
 
-    // Delegación de eventos para paginación
-    document.addEventListener('click', e => {
-        const link = e.target.closest('.pagination a');
-        if (!link) return;
-        e.preventDefault();
-
-        const page = new URL(link.href).searchParams.get('paged') || 1;
-        fetchProperties(page);
+  // Form submit triggers fetch (go to page 1)
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      fetchProperties(1, true);
     });
+    // optional: auto submit on change if you want
+    // form.addEventListener('change', () => fetchProperties(1, true));
+  }
 
-    // Manejo del back/forward del navegador
-    window.addEventListener('popstate', () => {
-        const page = new URL(window.location).searchParams.get('paged') || 1;
-        fetchProperties(page);
-    });
+  // Handle browser back/forward
+  window.addEventListener('popstate', (e) => {
+    const paged = (e.state && e.state.paged) ? parseInt(e.state.paged) : (new URL(window.location)).searchParams.get('paged');
+    const page = parseInt(paged) || 1;
+    fetchProperties(page, false);
+  });
+
+  // Initial load via AJAX: if you rendered server-side you may skip this;
+  // here we always fetch so pagination markup is consistent with JS.
+  fetchProperties(currentPage, false);
 });
