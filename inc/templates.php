@@ -170,14 +170,12 @@ function properties_template() {
         $properties_css = "$assets_path/css/properties.css";
         $pagination_css = "$assets_path/css/pagination-properties.css";
         $filters = "$assets_path/js/filters.js";
-        $ajax = "$assets_path/js/ajax-properties.js";
         $reset = "$assets_path/js/reset-properties-filter.js";
 
         inmobiliaria_enqueue_style( 'breadcrumbs', $breadcrumbs_css );
         inmobiliaria_enqueue_style( 'properties', $properties_css );
         inmobiliaria_enqueue_style( 'pagination', $pagination_css );
         inmobiliaria_enqueue_script( 'filters', $filters );
-        inmobiliaria_enqueue_script( 'ajax', $ajax );
         inmobiliaria_enqueue_script( 'reset', $reset );
     }
 
