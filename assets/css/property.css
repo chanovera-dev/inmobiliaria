@@ -291,7 +291,7 @@
                         width: 46px;
                         height: 46px;
                         border: none;
-                        background-color: light-dark(--var(--wp--preset--color--base), var(--secondary-dark));
+                        background-color: light-dark(var(--wp--preset--color--base), var(--secondary-dark));
                         transition: background-color .2s ease;
 
                         &:hover {
