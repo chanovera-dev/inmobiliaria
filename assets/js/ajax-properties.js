@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // smooth scroll
-      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
     } catch (err) {
       console.error('fetchProperties error:', err);
