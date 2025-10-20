@@ -259,6 +259,235 @@
                 }
             }
         }
+
+        & .block.related.properties {
+            padding: 50px 0;
+            background-color: light-dark(var(--wp--preset--color--base), var(--base-dark));
+
+            & .content:has(h2.title-section) {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 2rem;
+                flex-wrap: wrap;
+
+                h2.title-section {
+                    font-size: var(--wp--preset--font-size--x-large);
+                    text-transform: uppercase;
+
+                    & span {
+                        opacity: .4;
+                    }
+                }
+
+                & .slideshow-buttons {
+                    display: flex;
+                    align-items: center;
+
+                    & .slideshow-button {
+                        display: grid;
+                        place-content: center;
+                        width: 46px;
+                        height: 46px;
+                        border: none;
+                        background-color: transparent;
+                        transition: background-color .2s ease;
+
+                        &:hover {
+                            background-color: light-dark(var(--wp--preset--color--yellow), var(--wp--preset--color--yellow));
+                        }
+                    }
+                }
+            }
+
+            & .content.slideshow--related-properties--wrapper {
+                position: relative;
+                transform: translateY(0);
+                transition: opacity 0.3s ease, transform .3s ease;
+                visibility: visible;
+                opacity: 1;
+
+                & .slideshow--related-properties {
+                    width: calc(100svw - 40px);
+                    position: relative;
+                    overflow: hidden;
+
+                    & .related-properties--list {
+                        display: grid;
+                        width: 800%;
+                        grid-template-columns: repeat(8, 1fr);
+
+                        & .property {
+                            position: relative;
+                            z-index: 0;
+                            display: grid;
+                            grid-template-rows: auto 1fr;
+                            font-size: var(--wp--preset--font-size--small);
+                            border-radius: 8px;
+                            overflow: hidden;
+
+                            & .property--header {
+                                position: relative;
+                                aspect-ratio: 4 / 3;
+                                overflow: hidden;
+                                border-radius: 8px 8px 0 0;
+                                padding: 10px;
+
+                                & .wp-post-image {
+                                    position: absolute;
+                                    top: 50%; left: 50%; transform: translate(-50%, -50%);
+                                    width: 100%;
+                                    aspect-ratio: 1 / 1;
+                                    z-index: -2;
+                                    transition: transform .3s ease-in-out, filter .3s ease-in-out;
+                                }
+
+                                &::before,
+                                &::after {
+                                    position: absolute;
+                                    content: '';
+                                    top: 0; left: 0; width: 100%; height: 100%;
+                                    border: 1px solid light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849));
+                                    mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849)), light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 50%);
+                                    border-radius: inherit;
+                                    corner-shape: inherit;
+                                    z-index: -1;
+                                }
+
+                                &::after {
+                                    mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 76%, light-dark(hsla(0, 0%, 100%, 0.644), hsla(0, 0%, 100%, 0.644)));
+                                }
+
+                                & .glass-reflex {
+                                    content: '';
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    background: rgba(255, 255, 255, 0.1);
+                                    pointer-events: none;
+                                    transform: skewX(340deg) translateX(-70%);
+                                    transition: transform .6s ease-in-out, filter .5s ease-in-out;
+                                    filter: blur(5px);
+                                    z-index: 0;
+                                }
+                            }
+
+                            & .property--body {
+                                display: grid;
+                                grid-template-rows: 1fr auto;
+                                background-color: light-dark(var(--wp--preset--color--secondary), var(--secondary-dark));
+                                padding: 20px;
+
+                                & .property--body--heading {
+                                    display: grid;
+                                    grid-template-rows: 1fr auto;
+                                    padding-bottom: 10px;
+                                    
+                                    & .property--permalink {
+                                        transition: color .3s ease-in-out;
+
+                                        & .property--title {
+                                            text-transform: lowercase;
+                                            font-size: var(--wp--preset--font-size--large);
+                                            font-weight: 600;
+                                            
+                                            &::first-letter {
+                                                text-transform: capitalize;
+                                            }
+                                        }
+
+                                        &:hover {
+                                            color: light-dark(var(--green--lighter), var(--wp--preset--color--green));
+                                        }
+                                    }
+
+                                    & .location {
+                                        & svg {
+                                            margin-right: 10px;
+                                            position: relative;
+                                            top: 3px;
+                                        }
+                                    }
+                                }
+
+                                & .property--metadata {
+                                    display: grid;
+                                    gap: 0 20px;
+                                    align-items: end;
+                                    grid-template-columns: 1fr auto;
+                                    grid-template-rows: 1fr 1fr;
+                                    padding-top: 10px;
+                                    border-top: 2px dashed var(--wp--preset--color--accent-6);
+                                    
+                                    & ul {
+                                        padding-left: 0;
+                                        list-style: none;
+                                        display: flex;
+                                        align-items: baseline;
+                                        gap: 13px;
+                                        
+                                        & li {
+                                            display: inline-flex;
+                                            align-items: baseline;
+                                            gap: 5px;
+
+                                            &.lot {
+                                                & svg {
+                                                    position: relative;
+                                                    top: 2px;
+                                                }
+                                            }
+
+                                            &.bedroom {
+                                                & svg {
+                                                    position: relative;
+                                                    top: 4px;
+                                                }
+                                            }
+                                        }
+
+                                        &:nth-child(1) {
+                                            grid-row: 1 / 2;
+                                        }
+
+                                        &:nth-child(2) {
+                                            grid-row: 2 / 3;
+                                        }
+                                    }
+
+                                    & .price {
+                                        position: relative;
+                                        top: 2px;
+                                        grid-column: 2 / 3;
+                                        grid-row: 1 / 3;
+
+                                        & h3 {
+                                            font-weight: 600;
+                                        }
+                                    }
+                                }
+                            }
+
+                            &:hover {
+                                & .property--header {
+                                    & .wp-post-image {
+                                        transform: translate(-50%, -50%) scale(1.1);
+                                        filter: brightness(1.1);
+                                    }
+
+                                    & .glass-reflex {
+                                        transform: skewX(340deg) translateX(70%);
+                                        filter: blur(8px);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -276,15 +505,39 @@
         grid-template-columns: 1fr;
         grid-auto-rows: 80px;
     }
+
+    .site-main {
+        & .property {
+            & .block.related.properties {
+                & .content.slideshow--related-properties--wrapper {
+                    width: var(--max-width--content);
+
+                    & .slideshow--related-properties {
+                        width: calc(var(--max-width--content) + 38px);
+
+                        & .related-properties--list {
+                            width: 409%;
+
+                            & .property {
+                                width: calc(100% - 14px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media (width < 42.813rem) {
     & .site-main {
-        & .block {
-            & .is-layout-constrained {
-                > *:not(.wp-block-separator) {
-                    margin-left: 0!important;
-                    margin-right: 0 !important;
+        .property {
+            & .block {
+                & .is-layout-constrained {
+                    > *:not(.wp-block-separator) {
+                        margin-left: 0!important;
+                        margin-right: 0 !important;
+                    }
                 }
             }
         }
@@ -360,6 +613,38 @@
                     & .property-gallery--main {
                         & img {
                             aspect-ratio: 4 / 3;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(width >= 1024px) {
+    .site-main {
+        .property {
+            & .block.related.properties {
+                & .content.slideshow--related-properties--wrapper {
+                    & .slideshow--related-properties {
+                        & .related-properties--list {
+                            width: 270%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(width >= 1366px) {
+    .site-main {
+        .property {
+            & .block.related.properties {
+                & .content.slideshow--related-properties--wrapper {
+                    & .slideshow--related-properties {
+                        & .related-properties--list {
+                            width: 202%;
                         }
                     }
                 }

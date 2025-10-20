@@ -543,8 +543,3 @@ function ajax_filter_properties() {
     wp_reset_postdata();
     wp_die();
 }
-
-wp_enqueue_script('ajax-properties', get_template_directory_uri() . '/assets/js/ajax-properties.js', ['jquery'], null, true);
-wp_localize_script('ajax-properties', 'ajax_object', [
-    'ajaxurl' => admin_url('admin-ajax.php'),
-]);

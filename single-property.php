@@ -167,13 +167,69 @@ while ( have_posts() ) : the_post();
                 </div>
             </div>
         </section>
-        <section class="block related-properties--wrapper">
-            <div class="content">
-                <?php
-                    
-                ?>
-            </div>
-        </section>
+        <?php endwhile; ?>
+        <?php
+            // --- Extraer ciudad y estado desde $location ---
+            $city  = '';
+            $state = '';
+
+            if ($location) {
+                $parts = array_map('trim', explode(',', $location));
+
+                // Ejemplo: Calle, Ciudad, Estado, País
+                if (count($parts) >= 2) {
+                    $city  = $parts[count($parts) - 3] ?? '';
+                    $state = $parts[count($parts) - 2] ?? '';
+                }
+            }
+
+            // --- WP_Query de propiedades relacionadas ---
+            $args = array(
+                'post_type'      => 'property',
+                'post_status'    => 'publish',
+                'posts_per_page' => 8,
+                'orderby'        => 'date',
+                'order'          => 'DESC',
+                'no_found_rows'  => true,
+                'post__not_in'   => array( get_the_ID() ), // excluir la actual
+                'meta_query'     => array(
+                    'relation' => 'OR',
+                    array(
+                        'key'     => 'eb_location',
+                        'value'   => $city,
+                        'compare' => 'LIKE',
+                    ),
+                    array(
+                        'key'     => 'eb_location',
+                        'value'   => $state,
+                        'compare' => 'LIKE',
+                    ),
+                ),
+            );
+
+            $query = new WP_Query($args);
+
+            if ($query->have_posts()) {
+                echo '<section class="block related properties"><div class="content"><h2 class="title-section">Propiedades <span>relacionadas</span></h2><div class="slideshow-buttons">
+                <button id="related-products--backward-button" class="backward-button slideshow-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/></svg>
+                </button>
+                <button id="related-products--forward-button" class="forward-button slideshow-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/></svg>
+                </button>
+            </div></div>';
+                echo '<div class="content slideshow--related-properties--wrapper"><div class="slideshow--related-properties"><div class="related-properties--list">';
+                while ($query->have_posts()) {
+                    $query->the_post();
+                    get_template_part('template-parts/content', 'property');
+                }
+                echo '</div></div></div></section>';
+            } else {
+                echo '<p>No se encontraron propiedades relacionadas en la zona.</p>';
+            }
+
+            wp_reset_postdata();
+        ?>
     </article>
 </main>
 
@@ -237,4 +293,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
-<?php endwhile; get_footer(); ?>
+<?php get_footer(); ?>
