@@ -1,6 +1,7 @@
 function initHeroParallax() {
-    const parallaxImages = document.querySelectorAll(".background-hero");
+    if (window.innerWidth < 1024) return;
 
+    const parallaxImages = document.querySelectorAll(".background-hero");
     if (!parallaxImages.length) return;
 
     window.addEventListener("scroll", () => {
@@ -12,5 +13,4 @@ function initHeroParallax() {
         });
     });
 }
-
 document.addEventListener("DOMContentLoaded", initHeroParallax);
