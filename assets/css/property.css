@@ -283,6 +283,7 @@
                 & .slideshow-buttons {
                     display: flex;
                     align-items: center;
+                    gap: 10px;
 
                     & .slideshow-button {
                         display: grid;
