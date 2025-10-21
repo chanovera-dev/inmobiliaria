@@ -182,7 +182,7 @@ function properties_templates() {
     if ( is_page_template( 'archive-property.php' ) ) {
         $breadcrumbs_css = "$assets_path/css/breadcrumbs.css";
         $properties_css = "$assets_path/css/properties.css";
-        $pagination_css = "$assets_path/css/pagination-properties.css";
+        $pagination_css = "$assets_path/css/pagination.css";
         $filters = "$assets_path/js/filters.js";
         $reset = "$assets_path/js/reset-properties-filter.js";
 
