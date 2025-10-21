@@ -62,20 +62,6 @@
                         z-index: -1;
                     }
 
-                    &:hover {
-                        & .glass-reflex {
-                            transform: skewX(340deg) translateX(70%);
-                            filter: blur(8px);
-                        }
-
-                        & .post--title-wrapper {
-                            & .glass-reflex {
-                                transform: skewX(340deg) translateX(55%);
-                                filter: blur(8px);
-                            }
-                        }
-                    }
-
                     & .wp-post-image {
                         position: absolute;
                         top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -83,6 +69,7 @@
                         height: 100%;
                         object-fit: cover;
                         z-index: -2;
+                        transition: transform .3s ease-in-out, filter .3s ease-in-out;
                     }
 
                     & .post--category-wrapper {
@@ -161,6 +148,15 @@
 
                         & a {
                             font-size: calc(var(--wp--preset--font-size--small) - 3px);
+                        }
+                    }
+                }
+
+                &:hover {
+                    & header.post--header {
+                        & .glass-reflex {
+                            transform: skewX(340deg) translateX(70%);
+                            filter: blur(8px);
                         }
                     }
                 }
