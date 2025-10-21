@@ -187,11 +187,13 @@ function properties_template() {
         $property_css = "$assets_path/css/property.css";
         $galery = "$assets_path/js/galery.js";
         $slideshow = "$assets_path/js/slideshow-related-properties.js";
+        $parallax = "$assets_path/js/parallax.js";
 
+        inmobiliaria_enqueue_style( 'breadcrumbs', $breadcrumbs_css );
         inmobiliaria_enqueue_style( 'property', $property_css );
         inmobiliaria_enqueue_script( 'galery', $galery );
-        inmobiliaria_enqueue_style( 'breadcrumbs', $breadcrumbs_css );
         inmobiliaria_enqueue_script( 'slideshow-related-product', $slideshow );
+        inmobiliaria_enqueue_script( 'parallax', $parallax );
 
     }
 }

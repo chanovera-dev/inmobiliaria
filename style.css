@@ -38,6 +38,7 @@ body {
 
         & .btn,
         & #submit,
+        & .wpcf7-submit,
         & .filter-navigation.menu .menu-item-has-children > .sub-menu {
             border-radius: 1.4rem;
             corner-shape: squircle;

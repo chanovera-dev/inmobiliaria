@@ -85,7 +85,8 @@ textarea {
 *******************************************************************/
 
 .btn,
-#submit {
+#submit,
+.wpcf7-submit {
     display: inline-flex;
     align-items: center;
     gap: 7px;
@@ -134,7 +135,8 @@ textarea {
 }
 
 .primary,
-#submit {
+#submit,
+.wpcf7-submit {
   color: var(--wp--preset--color--base);
   background-color: light-dark(var(--wp--preset--color--green), var(--wp--preset--color--green));
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.15) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -2px 0px inset;

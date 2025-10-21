@@ -11,6 +11,7 @@
                 width: 100%;
                 height: 120%;
                 z-index: -2;
+                opacity: .35;
             }
 
             &::before {
@@ -542,6 +543,133 @@
                 }
             }
         }
+
+        & .block.contact {
+            position: relative;
+            overflow: hidden;
+
+            & .background-contact {
+                position: absolute;
+                top: -10%;
+                left: 0;
+                width: 100%;
+                height: 120%;
+                z-index: -2;
+                filter: brightness(.3);
+            }
+
+            & .content {
+                padding: 100px 0;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                gap: 50px;
+
+                & > :first-child {
+                    background-color: light-dark(var(--wp--preset--color--base), var(--base-dark));
+                    padding: 30px;
+                    border-radius: 8px;
+
+                    & .title-section {
+                        font-size: var(--wp--preset--font-size--x-large);
+                    }
+
+                    & p {
+                        font-size: var(--wp--preset--font-size--small);
+                        margin-bottom: 1.2rem;
+                    }
+
+                    & .wpcf7-form {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 0 20px;
+
+                        & p:has(span[data-name=your-message]) {
+                            grid-column: 1 / -1;
+
+                            & label {
+                                width: 100%;
+
+                                    & textarea {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                & > :nth-child(2) {
+                    color: var(--wp--preset--color--base);
+
+                    & > *:not(span,:last-child) {
+                        margin-bottom: 1.2rem;
+                    }
+
+                    & span {
+                        font-weight: var(--wp--preset--font-size--small);
+                        color: var(--green--lighter);
+                    }
+
+                    & .title-section {
+                        font-size: var(--wp--preset--font-size--xx-large);
+                    }
+
+                    & > p {
+                        font-size: var(--wp--preset--font-size--small);
+                        color: #999;
+                    }
+
+                    & div:has(.badge) {
+                        display: grid;
+                        gap: 0 20px;
+                        grid-template-columns: 70px 1fr;
+                        grid-template-rows: auto auto;
+
+                        & .badge {
+                            position: relative;
+                            top: 5px;
+                            display: grid;
+                            width: 70px;
+                            height: 70px;
+                            place-content: center;
+                            grid-column: 1 / 2;
+                            grid-row: 1 / 3;
+                            border-radius: 8px;
+                            background-color: #ffffff3a;
+                            backdrop-filter: blur(7px);
+
+                            &::before,
+                            &::after {
+                                position: absolute;
+                                content: '';
+                                top: 0; left: 0; width: 100%; height: 100%;
+                                border: 1px solid light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849));
+                                mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849)), light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 50%);
+                                border-radius: inherit;
+                                corner-shape: inherit;
+                                z-index: -1;
+                            }
+
+                            &::after {
+                                mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 76%, light-dark(hsla(0, 0%, 100%, 0.644), hsla(0, 0%, 100%, 0.644)));
+                            }
+                        }
+
+                        & h3 {
+                            grid-column: 2 / 3;
+                            grid-row: 1 / 2;
+                        }
+
+                        & p {
+                            font-size: var(--wp--preset--font-size--small);
+                            color: #999;
+                            grid-column: 2 / 3;
+                            grid-row: 2 / 3;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -656,11 +784,18 @@
                 }
                 
             }
+
             & .block.property--details {
                 & .content:has(.title-section) {
                     .title-section {
                         max-width: 90%;
                     }
+                }
+            }
+
+            & .block.contact {
+                & .content {
+                    grid-template-columns: 1fr;
                 }
             }
 
@@ -727,6 +862,24 @@ body.property-template-default.is-chromium {
                         & img {
                             border-radius: 1.2rem !important;
                             corner-shape: squircle;
+                        }
+                    }
+                }
+            }
+
+            & .block.contact {
+                & .content {
+                    & > :first-child {
+                        border-radius: 1.2rem !important;
+                        corner-shape: squircle;
+                    }
+
+                    & > :nth-child(2) {
+                        & div:has(.badge) {
+                            & .badge {
+                                border-radius: 1.2rem !important;
+                                corner-shape: squircle;
+                            }
                         }
                     }
                 }
