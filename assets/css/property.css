@@ -221,6 +221,7 @@
                 .property-gallery {
                     display: flex;
                     flex-direction: column;
+                    overflow: hidden;
                 }
 
                 /* Imagen principal */
