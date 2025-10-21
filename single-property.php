@@ -245,7 +245,7 @@ while ( have_posts() ) : the_post();
                         // if ( $shortcode = get_field( 'contact_shortcode' ) ):
                         //     echo do_shortcode( $shortcode );
                         // endif; 
-                        echo do_shortcode( '[contact-form-7 id="bfb4d80" title="Formulario de contacto 1"]' );
+                        echo do_shortcode( '[contact-form-7 id="928a2fd" title="Formulario de contacto 1"]' );
                     ?>
                 </div>
                 <div>
