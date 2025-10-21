@@ -373,8 +373,93 @@ img {
     }
 }
 
+#main-footer {
+    background-color: light-dark(var(--wp--preset--color--base), #323232);
+
+    & .top-footer {
+        border-top: 1px solid light-dark(var(--wp--preset--color--accent-6), var(--wp--preset--color--accent-6));
+        display: flex;
+        flex-wrap: wrap;
+        align-items: start;
+        gap: 20px;
+        padding: 20px 0;
+
+        & .logo-title {
+            width: 150px;
+        }
+
+        & ul {
+            & li {
+                & a {
+                    transition: color .3s ease-in-out;
+                    
+                    &:hover {
+                        color: var(--green--lighter);
+
+                        &::before {
+                            background-color: var(--green--lighter);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    & .middle-footer {
+        padding-top: 20px;
+        border-top: 1px solid light-dark(var(--wp--preset--color--accent-6), var(--wp--preset--color--accent-6));
+    }
+
+    & .title-section {
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+    
+    & :is(.top-footer, .middle-footer, .bottom-footer) {
+        color: light-dark(var(--wp--preset--color--contrast), var(--contrast-dark));
+        font-size: var(--wp--preset--font-size--small);
+
+        & a:before {
+            background-color: light-dark(var(--wp--preset--color--contrast), var(--contrast-dark));
+        }
+
+        & .contact {
+            & .menu {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        & .services {
+            & .menu {
+                padding-left: 0;
+                list-style: none;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+
+                & li {
+                    & a {
+                        height: 25px;
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+
+        & .social {
+            position: relative;
+            top: 4px;
+        }
+    }
+}
+
 @media (width < 38.75rem) {
     .block:has(.content .social,.content .contact) {
         display: none;
+    }
+
+    #main-footer.block:has(.content .social,.content .contact) {
+        display: block;
     }
 }

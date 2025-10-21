@@ -21,6 +21,7 @@ function setup_inmobiliaria() {
     register_nav_menus(
         array(
             'contact'      => __( 'Contact', 'inmobiliaria' ),
+            'services'     => __( 'Services', 'inmobiliaria' ),
             'primary'      => __( 'Main Menu', 'inmobiliaria' ),
             'social'       => __( 'Social Menu', 'inmobiliaria' ),
         )
