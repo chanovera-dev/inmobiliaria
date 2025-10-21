@@ -556,6 +556,7 @@
                 height: 120%;
                 z-index: -2;
                 filter: brightness(.3);
+                object-fit: cover;
             }
 
             & .content {
