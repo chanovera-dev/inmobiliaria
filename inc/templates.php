@@ -161,8 +161,22 @@ function frontpage_template() {
 }
 add_action( 'wp_enqueue_scripts', 'frontpage_template' );
 
-
-function properties_template() {
+/**
+ * Enqueues specific styles and scripts for property-related templates.
+ *
+ * This function loads custom CSS and JavaScript files for:
+ * - Property archive pages (archive-property.php), including filters,
+ *   pagination, and AJAX-powered property loading.
+ * - Single property pages (single-property.php), including gallery,
+ *   related property slideshow, and parallax effects.
+ *
+ * It uses custom enqueue helpers (inmobiliaria_enqueue_style/script)
+ * and localizes the AJAX script with the admin-ajax URL.
+ *
+ * @since 1.0.0
+ * @package inmobiliaria
+ */
+function properties_templates() {
     $assets_path = '/assets';
 
     if ( is_page_template( 'archive-property.php' ) ) {
@@ -197,4 +211,4 @@ function properties_template() {
 
     }
 }
-add_action( 'wp_enqueue_scripts', 'properties_template' );
+add_action( 'wp_enqueue_scripts', 'properties_templates' );

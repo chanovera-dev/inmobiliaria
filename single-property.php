@@ -1,4 +1,14 @@
-<?php 
+<?php
+/**
+ * Single Property Template
+ *
+ * Template for displaying a single property post (Custom Post Type: 'property').
+ * This file includes the full property details such as metadata, gallery, location, and related listings.
+ *
+ * @package inmobiliaria
+ * @since 1.0.0
+ */
+
 while ( have_posts() ) : the_post();
     $id           = get_post_meta( get_the_ID(), 'eb_public_id', true );
     $price        = get_post_meta( get_the_ID(), 'eb_price', true );
