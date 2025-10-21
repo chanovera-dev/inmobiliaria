@@ -726,6 +726,24 @@
                     }
                 }
             }
+
+            & .block.property--details {
+                & .content.details {
+                    & .property-gallery {
+                        overflow: hidden;
+                    }
+                }
+            }
+
+            & .block.contact {
+                & .content {
+                    & > :first-child {
+                        & .wpcf7-form {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -776,8 +794,9 @@
                             aspect-ratio: 1 / 1;
 
                             & .wp-post-image {
-                                top: -100%;
-                                height: 100dvh;
+                                top: 0;
+                                height: 100%;
+                                width: 100%;
                             }
                         }
                     }
