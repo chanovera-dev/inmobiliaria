@@ -374,7 +374,7 @@ img {
 }
 
 #main-footer {
-    background-color: light-dark(var(--wp--preset--color--base), #323232);
+    background-color: light-dark(var(--wp--preset--color--base), var(--base-dark));
 
     & .top-footer {
         border-top: 1px solid light-dark(var(--wp--preset--color--accent-6), var(--wp--preset--color--accent-6));
