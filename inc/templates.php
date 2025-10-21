@@ -115,7 +115,6 @@ function posts_styles() {
 
         inmobiliaria_enqueue_style( 'breadcrumbs', $breadcrumbs_css );
         inmobiliaria_enqueue_style( 'posts', $posts_css );
-        inmobiliaria_enqueue_style( 'pagination', $pagination_css );
         
         if ( paginate_links() ) {
             inmobiliaria_enqueue_style( 'pagination', $pagination_css );
