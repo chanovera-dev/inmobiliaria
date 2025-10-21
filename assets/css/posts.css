@@ -18,13 +18,15 @@
                 display: grid;
                 align-items: start;
                 grid-template-rows: auto 1fr;
+                box-shadow: rgba(50, 50, 93, 0.125) 0px 13px 27px -5px, rgba(0, 0, 0, 0.15) 0px 8px 16px -8px;
+                border-radius: 8px;
 
                 & header.post--header {
                     position: relative;
                     overflow: hidden;
                     width: 100%;
-                    aspect-ratio: 3 / 4;
-                    border-radius: 1rem;
+                    aspect-ratio: 4 / 3;
+                    border-radius: 8px 8px 0 0;
                     display: grid;
                     align-content: end;
                     padding: .5rem;
@@ -83,30 +85,37 @@
                         z-index: -2;
                     }
 
-                    & .post--title-wrapper {
+                    & .post--category-wrapper {
                         position: relative;
-                        background-color: light-dark(var(--wp--preset--color--base-alpha), var(--base-alpha-dark));
-                        backdrop-filter: blur(10px);
-                        border-radius: .6rem;
-                        corner-shape: inherit;
-                        padding: 10px;
-                        box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 7px -3px, rgba(0, 0, 0, 0.1) 0px 2px 3px -1px;
 
-                        &::before,
-                        &::after {
-                            position: absolute;
-                            content: '';
-                            top: 0; left: 0; width: 100%; height: 100%;
-                            border: 1px solid light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849));
-                            mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849)), light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 50%);
-                            border-radius: inherit;
-                            corner-shape: inherit;
-                            z-index: -1;
-                        }
+                        & .post--categories {
+                            & a {
+                                position: relative;
+                                background-color: light-dark(var(--wp--preset--color--base-alpha), var(--base-alpha-dark)) !important;
+                                backdrop-filter: blur(10px);
+                                font-size: calc(var(--wp--preset--font-size--small) - 3px);
 
-                        &::after {
-                            mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 76%, light-dark(hsla(0, 0%, 100%, 0.644), hsla(0, 0%, 100%, 0.644)));
-                        }
+                                &:hover {
+                                    color: light-dark(var(--wp--preset--color--contrast), var(--contrast-dark));
+                                }
+                                
+                                &::before,
+                                &::after {
+                                    position: absolute;
+                                    content: '';
+                                    top: 0; left: 0; width: 100%; height: 100%;
+                                    border: 1px solid light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849));
+                                    mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849)), light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 50%);
+                                    border-radius: inherit;
+                                    corner-shape: inherit;
+                                    z-index: -1;
+                                }
+
+                                &::after {
+                                    mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 76%, light-dark(hsla(0, 0%, 100%, 0.644), hsla(0, 0%, 100%, 0.644)));
+                                }
+                            }
+                        }                        
 
                         & .glass-reflex {
                             content: '';
@@ -122,13 +131,6 @@
                             filter: blur(5px);
                             z-index: -1;
                         }
-
-
-                        & .post--permalink {
-                            & .post--title {
-                                font-size: calc(var(--wp--preset--font-size--small) + 2px);
-                            }
-                        }
                     }
                 }
 
@@ -136,8 +138,51 @@
                     display: grid;
                     grid-template-rows: 1fr auto;
                     height: 100%;
-                    margin-top: .5rem;
                     font-size: var(--wp--preset--font-size--small);
+                    padding: 20px;
+                    background-color: light-dark(var(--wp--preset--color--base), var(--secondary-dark));
+                    border-radius: inherit;
+                    corner-shape: inherit;
+
+                    & .post--permalink {
+                        & .post--title {
+                            font-size: var(--wp--preset--font-size--medium);
+                            font-weight: 600;
+                        }
+                    }
+
+                    & p {
+                        padding: 10px 0;
+                    }
+
+                    & .post--tags {
+                        padding-top: 10px;
+                        border-top: 2px dashed var(--wp--preset--color--accent-6);
+
+                        & a {
+                            font-size: calc(var(--wp--preset--font-size--small) - 3px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+body {
+    &.is-chromium {
+        & .site-main {
+            & .block.posts--body {
+                & .content {
+                    & .post {
+                        border-radius: 1.2rem !important;
+                        corner-shape: squircle;
+
+                        & header.post--header {
+                            border-radius: 1.2rem 1.2rem 0 0 !important;
+                            corner-shape: squircle;
+                        }
+                    }
                 }
             }
         }

@@ -7,8 +7,7 @@
             }
         ?>
         <div class="glass-reflex"></div>
-        <div class="post--title-wrapper">
-            <div class="glass-reflex"></div>
+        <div class="post--category-wrapper">
             <div class="post--categories">
                 <?php
                     $categories = get_the_category();
@@ -23,12 +22,13 @@
                     }
                 ?>
             </div>
-            <a href="<?php the_permalink(); ?>" class="post--permalink">
-                <?php the_title( '<h3 class="post--title">', '</h3>' ); ?>
-            </a>
         </div>
     </header>
     <div class="post--body">
+        <a href="<?php the_permalink(); ?>" class="post--permalink">
+            <?php the_title( '<h3 class="post--title">', '</h3>' ); ?>
+        </a>
+        <?php the_excerpt(); ?>
         <div class="post--tags">
             <?php
                 $tags = get_the_tags();
@@ -39,6 +39,5 @@
                 }
             ?>
         </div>
-        <?php the_excerpt(); ?>
     </div>
 </article>
