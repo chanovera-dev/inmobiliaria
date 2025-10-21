@@ -1,5 +1,3 @@
-
-
 .site-main {
     & .property {
         & header.block.property--heading {
@@ -705,6 +703,30 @@
                     & .slideshow--related-properties {
                         & .related-properties--list {
                             width: 202%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+body.property-template-default.is-chromium {
+    & .site-main {
+        & .property {
+            & .block.property--details {
+                & .content.details {
+                    .property-gallery--main img {
+                        border-radius: 1.2rem !important;
+                        corner-shape: squircle;
+                    }
+                }
+
+                & .property-gallery--thumbs-wrapper {
+                    & .property-gallery--thumbs {
+                        & img {
+                            border-radius: 1.2rem !important;
+                            corner-shape: squircle;
                         }
                     }
                 }

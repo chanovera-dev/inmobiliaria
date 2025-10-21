@@ -73,7 +73,8 @@ body {
         & .site-main .property header.block.property--heading .content .property-data--wrapper:before,
         & .site-main .property header.block.property--heading .content .property-data--wrapper .property--metadata .property--map,
         & .site-main .property header.block.property--heading .content .property--big-image--wrapper .property--big-image,
-        & .site-main .property .block.property--details .content.details .property--metadata .property--metadata--list li {
+        & .site-main .property .block.property--details .content.details .property--metadata .property--metadata--list li,
+        & .site-main .property .block.property--details .content.details .property-gallery--main img {
             border-radius: 1.2rem !important;
             corner-shape: squircle;
         }
