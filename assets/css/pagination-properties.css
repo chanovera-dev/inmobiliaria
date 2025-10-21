@@ -34,7 +34,7 @@
                                 }
                             }
 
-                            &:hover:not(.current) {
+                            &:hover:not(.current,.dots) {
                                 background-color: light-dark(var(--wp--preset--color--secondary), var(--secondary-dark));
                                 &:before {
                                     position: absolute;
