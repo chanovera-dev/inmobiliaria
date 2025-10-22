@@ -1,5 +1,3 @@
-if (window.innerWidth < 1024) return;
-
 const layers = document.querySelectorAll('.background-parallax');
     const visibleLayers = new Set();
 
