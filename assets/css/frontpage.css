@@ -1,0 +1,26 @@
+& .call-to-action {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+
+    .go-to-properties {
+        color: var(--wp--preset--color--base);
+        text-shadow: var(--modern-text-shadow);
+    }
+}
+
+@media (width < 600px) {
+    & .call-to-action {
+        & .go-to-properties {
+            transform: translateX(-20px);
+        }
+    }
+}
+
+body.is-chromium {
+    .go-to-contact {
+        border-radius: 1rem;
+        corner-shape: squircle;
+    }
+}

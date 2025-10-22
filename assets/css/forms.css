@@ -109,6 +109,7 @@ textarea {
 
     &:hover {
       filter: brightness(1.1);
+      cursor: pointer;
     }
 
     &.yellow {
@@ -153,7 +154,10 @@ textarea {
   }
 }
 
-.without-line {}
+.without-line {
+  background-color: transparent;
+  box-shadow: none;
+}
 
 .btn-small {
   font-size: var(--wp--preset--font-size--small);

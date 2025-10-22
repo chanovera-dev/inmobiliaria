@@ -156,7 +156,10 @@ function frontpage_template() {
 
     if ( is_front_page() || is_page_template( 'front-page.php' ) ) {
         $frontpage_css = "$assets_path/css/frontpage.css";
+        $hero_css = "$assets_path/css/frontpage/hero.css";
+
         inmobiliaria_enqueue_style( 'frontpage', $frontpage_css );
+        inmobiliaria_enqueue_style( 'hero', $hero_css );
     }
 }
 add_action( 'wp_enqueue_scripts', 'frontpage_template' );
