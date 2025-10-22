@@ -1,5 +1,5 @@
 <article class="post">
-    <header class="post--header">
+    <header class="post--header glass-bright">
         <div class="backdrop"></div>
         <?php
             if ( has_post_thumbnail() ) {
@@ -17,7 +17,7 @@
                             $cat_name = esc_html( $category->name );
                             $cat_link = esc_url( get_category_link( $category->term_id ) );
 
-                            echo "<a href='{$cat_link}' class='category btn outline btn-small'><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-bookmark\" viewBox=\"0 0 16 16\"><path d=\"M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z\"/></svg>{$cat_name}</a> ";
+                            echo "<a href='{$cat_link}' class='category btn outline btn-small glass-backdrop glass-bright'><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-bookmark\" viewBox=\"0 0 16 16\"><path d=\"M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z\"/></svg>{$cat_name}</a> ";
                         }
                     }
                 ?>
