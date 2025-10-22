@@ -103,6 +103,32 @@ img {
     height: auto;
 }
 
+& .glass-backdrop {
+    background-color: light-dark(var(--wp--preset--color--base-alpha), var(--base-alpha-dark));
+    backdrop-filter: blur(10px);
+}
+
+& .glass-bright {
+    position: relative;
+
+    &::before,
+    &::after {
+        position: absolute;
+        content: '';
+        top: 0; left: 0; width: 100%; height: 100%;
+        border: 1px solid light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849));
+        mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849)), light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 50%);
+        border-radius: inherit;
+        corner-shape: inherit;
+        z-index: -1;
+    }
+
+    &::after {
+        mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 76%, light-dark(hsla(0, 0%, 100%, 0.644), hsla(0, 0%, 100%, 0.644)));
+    }
+
+}
+
 :is(.scroll-down,.scroll-up) {
     & .block {
         & .content {

@@ -543,3 +543,67 @@ function ajax_filter_properties() {
     wp_reset_postdata();
     wp_die();
 }
+
+/****************************************************************************************************************
+ * C H E C K B O X   F E A T U R E D   O N  P R O P E R T I E S
+ ****************************************************************************************************************/
+// Añadir la columna
+add_filter('manage_property_posts_columns', function($columns) {
+    $columns['featured'] = __('Featured', 'inmobiliaria');
+    return $columns;
+});
+
+// Mostrar la columna con toggle AJAX
+add_action('manage_property_posts_custom_column', function($column, $post_id) {
+    if ($column === 'featured') {
+        $is_featured = get_field('featured', $post_id);
+        $checked = $is_featured ? 'checked' : '';
+        echo '<input type="checkbox" class="acf-featured-toggle" data-id="' . $post_id . '" ' . $checked . ' />';
+    }
+}, 10, 2);
+
+add_action('admin_footer-edit.php', function() {
+    $screen = get_current_screen();
+    if ($screen->post_type !== 'property') return;
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggles = document.querySelectorAll('.acf-featured-toggle');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('change', () => {
+                const postId = toggle.dataset.id;
+                const value = toggle.checked ? 1 : 0;
+                fetch(ajaxurl, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: new URLSearchParams({
+                        action: 'toggle_featured',
+                        post_id: postId,
+                        value: value,
+                        _ajax_nonce: '<?php echo wp_create_nonce('toggle_featured_nonce'); ?>'
+                    })
+                }).then(r => r.json()).then(res => {
+                    if (!res.success) alert('Error al actualizar');
+                });
+            });
+        });
+    });
+    </script>
+    <style>
+        .acf-featured-toggle { transform: scale(1.2); cursor: pointer; }
+    </style>
+    <?php
+});
+
+add_action('wp_ajax_toggle_featured', function() {
+    check_ajax_referer('toggle_featured_nonce');
+    $post_id = intval($_POST['post_id']);
+    $value = intval($_POST['value']);
+
+    if (!current_user_can('edit_post', $post_id)) {
+        wp_send_json_error('Permiso denegado');
+    }
+
+    update_field('featured', $value, $post_id); // ACF actualiza el campo
+    wp_send_json_success();
+});

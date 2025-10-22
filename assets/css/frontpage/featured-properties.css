@@ -1,0 +1,440 @@
+.site-main {
+    #featured-properties.block {
+        max-width: 100dvw;
+        height: calc(100dvh);
+        position: relative;
+        text-shadow: var(--modern-text-shadow);
+        background-color: var(--green--darker);
+        background-image:  radial-gradient(var(--wp--preset--color--green-alpha) 0.5px, transparent 0.5px), radial-gradient(var(--wp--preset--color--green-alpha) 0.5px, var(--green--darker) 0.5px);
+        background-size: 20px 20px;
+        background-position: 0 0,10px 10px;
+
+        & .container {
+            height: 100%;
+
+            & .title-section--wrapper {
+                position: absolute;
+                top: 4rem;
+                left: 50%;
+                transform: translateX(-50%);
+                width: min(100% - 40px, 1366px);
+                z-index: 1;
+                display: inline-flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+
+                & .title-section {
+                    display: flex;
+                    align-items: center;
+                    height: 38px;
+                    color: light-dark(var(--wp--preset--color--contrast), var(--contrast-dark));
+                    background-color: light-dark(var(--wp--preset--color--base-alpha), var(--base-alpha-dark));
+                    backdrop-filter: blur(10px);
+                    display: inline-flex;
+                    text-shadow: none;
+                    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.15) 0px 7px 13px -3px;
+                    font-size: var(--wp--preset--font-size--small);
+                    padding: 5px 10px;
+                    border-radius: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    font-weight: 600;
+                }
+
+                & .go-to-properties {
+                    color: var(--wp--preset--color--base);
+                    text-shadow: var(--modern-text-shadow);
+                }
+
+            }
+
+            & .slideshow-wrapper {
+                height: 100%;
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+
+                & .slideshow {
+                    display: flex;
+                    height: 100%;
+                    overflow: hidden;
+
+                    & .propiedad-card {
+                        color: var(--wp--preset--color--white);
+
+                        & a {
+                            position: relative;
+
+                            & .block {
+                                width: 100%;
+                                height: 100%;
+                                align-content: center;
+                                position: relative;
+
+                                & .wp-post-image {
+                                    position: absolute;
+                                    /* top: -30%; */
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    /* height: 120%; */
+                                    height: 100%;
+                                    object-fit: cover;
+                                    transform: scale(.5);
+                                    filter: brightness(0.6);
+                                    border-radius: 4rem;
+                                    z-index: -1;
+                                }
+
+                                & .content {
+                                    transform: translateY(50px);
+
+                                    & > *:not(:last-child) {
+                                        margin-bottom: 1rem;
+                                    }
+
+                                    & .details {
+                                        overflow: hidden;
+                                        & p {
+                                            transform: translateY(-100%);
+
+                                            & span {
+                                                display: inline-flex;
+                                                align-items: baseline;
+                                                gap: 7px;
+                                                
+                                                &:not(:last-child) {
+                                                    margin-right: 1rem;
+                                                }
+
+                                                &.bedroom {
+                                                    & svg {
+                                                        position: relative;
+                                                        top: 3px;
+                                                    }
+                                                }
+
+                                                &.parking {
+                                                    & svg {
+                                                        position: relative;
+                                                        top: 5px;
+                                                    }
+                                                }
+
+                                                &.type {
+                                                    & svg {
+                                                        position: relative;
+                                                        top: 4px;
+                                                    }
+                                                }
+
+                                                & svg {
+                                                    filter: drop-shadow(2px 3px 5px #000);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    & .title-wrapper {
+                                        overflow: hidden;
+
+                                        & .title-card {
+                                            font-size: calc(var(--wp--preset--font-size--x-large) + 2dvw);
+                                            font-weight: 400;
+                                            line-height: 1.4;
+                                            max-width: 1024px;
+                                            transform: translateY(-100%);
+                                        }
+                                    }
+
+                                    & .excerpt-wrapper {
+                                        overflow: hidden;
+
+                                        & p {
+                                            font-size: var(--wp--preset--font-size--medium);
+                                            opacity: 0;
+                                            max-width: 768px;
+                                        }
+                                    }
+
+                                    & .price-wrapper {
+                                        overflow: hidden;
+
+                                        & .price {
+                                            font-size: var(--wp--preset--font-size--x-large);
+                                            transform: translateY(-100%);                                            
+                                        }
+                                    }
+                                }
+
+                                & .time-mark {
+                                    position: absolute;
+                                    content: '';
+                                    height: .5rem;
+                                    top: 0;
+                                    left: 0;
+                                    background-color: var(--wp--preset--color--green);
+                                    opacity: .7;
+                                }
+                            }
+                        }
+
+                        &.active {
+                            & .block {
+                                & .wp-post-image {
+                                    animation: image-brightness 10s ease-in-out forwards;
+                                }
+
+                                & .content {
+                                    & .details {
+                                        & p {
+                                            animation: animate-text-1 10s ease-in-out forwards;
+                                        }
+                                    }
+
+                                    & .title-wrapper {
+                                        & .title-card {
+                                            animation: animate-text-1 10s ease-in-out forwards;
+                                        }
+                                    }
+
+                                    & .excerpt-wrapper {
+                                        & p {
+                                            animation: excerpt-animation 10s ease-in-out forwards;
+                                        }
+                                    }
+
+                                    & .price-wrapper {
+                                        & .price {
+                                            animation: animate-text-1 10s ease-in-out forwards;
+                                        }
+                                    }
+                                }
+                            }
+
+                            & .time-mark {
+                                animation: time-mark--animation 10s ease-in-out forwards;
+                            }
+                        }
+                    }
+                }
+
+                & .slideshow-bullets-wrapper {
+                    width: min(100% - 40px, 1366px);
+                    position: absolute; 
+                    left: 50%;
+                    transform: translateX(-50%);
+                    bottom: 1.25rem; 
+                    z-index: 2;
+                    display: grid;
+                    grid-template-columns: auto 1fr auto;
+
+                    & .slideshow-bullets {
+                        align-items: center;
+                        padding-left: 0;
+                        background-color:transparent;
+                        display: flex; 
+                        justify-content: center;
+                        gap: 20px; 
+                        margin-inline: auto; 
+                        list-style: none; 
+                        border-radius: 9px;
+
+                        & .slideshow-bullet {
+                            width: 13px; 
+                            height: 13px; 
+                            border-radius: 50%; 
+                            background-color: transparent;
+                            border: 2px solid var(--wp--preset--color--white);
+                            cursor:pointer;
+
+                            &.active {
+                                background-color: var(--wp--preset--color--white);
+                            }
+                        }
+                    }
+
+                    & :is(.slideshow-prev,.slideshow-next) {
+                        display: grid;
+                        place-content: center;
+                        width: 64px;
+                        height: 64px;
+                        border: none;
+                        background-color: transparent;
+                        border: none;
+                        border-radius: 8px;
+                        transition: background-color .3s ease, backdrop-filter .3s ease;
+
+                        &:hover {
+                            background-color: light-dark(var(--wp--preset--color--base-alpha), var(--base-alpha-dark));
+                            cursor: pointer;
+
+                            & svg {
+                                fill: light-dark(var(--wp--preset--color--contrast), var(--wp--preset--color--base));
+                            }
+                        }
+
+                        & svg {
+                            fill: light-dark(var(--wp--preset--color--base), var(--wp--preset--color--base));
+                            transition: fill .3s ease;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes image-brightness {
+    0% {
+        transform: scale(.5);
+        border-radius: 4rem;
+    }
+
+    10% {
+        transform: scale(1);
+        border-radius: 0;
+    }
+
+    80% {
+        transform: scale(1);
+        border-radius: 0;
+    }
+
+    90% {
+        transform: scale(.5);
+        border-radius: 4rem;
+    }
+}
+
+@-webkit-keyframes image-brightness {
+    0% {
+        transform: scale(.5);
+        border-radius: 5rem;
+        corner-shape: squircle;
+    }
+
+    10% {
+        transform: scale(1);
+        border-radius: 0;
+        corner-shape: square;
+    }
+
+    80% {
+        transform: scale(1);
+        border-radius: 0;
+        corner-shape: square;
+    }
+
+    90% {
+        transform: scale(.5);
+        border-radius: 5rem;
+        corner-shape: squircle;
+    }
+}
+
+@keyframes time-mark--animation {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes animate-text-1 {
+    0% {
+        transform: translateY(-150%);
+    }
+
+    10% {
+        transform: translateY(-150%);
+    }
+
+    20% {
+        transform: translateY(0);
+    }
+
+    75% {
+        transform: translateY(0);
+    }
+
+    85% {
+        transform: translateY(-150%);
+    }
+}
+
+@keyframes excerpt-animation {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 0;
+    }
+}
+
+body.is-chromium {
+    & .title-section--wrapper .title-section,
+    & :is(.slideshow-prev,.slideshow-next) {
+        border-radius: 1.2rem !important;
+        corner-shape: squircle;
+    }
+
+    & .propiedad-card {
+        & a {
+            & .block {
+                & .wp-post-image {
+                    border-radius: 5rem;
+                    corner-shape: squircle;
+
+                }
+            }
+        }
+    }
+}
+
+@media (width < 600px) {
+    .site-main {
+        & #featured-properties.block {
+            & .container {
+                & .slideshow-wrapper {
+                    & .slideshow {
+                        & .propiedad-card {
+                            & a {
+                                & .block {
+                                    & .content {
+                                        & .title-wrapper {
+                                            & .title-card {
+                                                font-size: var(--wp--preset--font-size--large);
+                                            }
+                                        }
+                                        & .excerpt-wrapper {
+                                            & p {
+                                                font-size: var(--wp--preset--font-size--small);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
