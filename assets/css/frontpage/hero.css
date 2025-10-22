@@ -23,6 +23,7 @@
             & .page-title {
                 font-size: calc(var(--wp--preset--font-size--xx-large) + 2dvw);
                 line-height: 1.2;
+                margin-bottom: .5rem;
             }
             
         }
