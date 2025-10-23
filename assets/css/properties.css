@@ -3,7 +3,7 @@
         & .content.properties {
             padding: 50px 0;
             display: grid;
-            gap: 50px;
+            gap: 40px;
 
             & .properties--sidebar {
                 & .property-filter-form {
@@ -186,7 +186,7 @@
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                 place-content: start;
-                gap: 50px;
+                gap: 40px;
 
                 & .property {
                     display: grid;

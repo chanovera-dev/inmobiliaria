@@ -698,13 +698,13 @@
                     width: var(--max-width--content);
 
                     & .slideshow--related-properties {
-                        width: calc(var(--max-width--content) + 76px);
+                        width: calc(var(--max-width--content) + 65px);
 
                         & .related-properties--list {
                             width: 409%;
 
                             & .property {
-                                width: calc(100% - 50px);
+                                width: calc(100% - 40px);
                             }
                         }
                     }
