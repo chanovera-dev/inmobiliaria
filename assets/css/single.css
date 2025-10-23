@@ -47,16 +47,12 @@ header.block {
     & .content.related-posts--title {
         text-align: center;
         padding-top: 2.5rem;
-        padding-bottom: 1.25rem;
+        padding-bottom: 0 !important;
         grid-template-columns: 1fr !important;
     }
 
     & .content.related-posts--list {
         padding-bottom: 3rem;
-
-        & .post {
-            
-        }
     }
 
     & .content-author {

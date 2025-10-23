@@ -1,5 +1,5 @@
 <section id="filter-properties" class="block">
     <div class="content">
-        <div class="filter"></div>
+        <h2 class="title-section">Encuentra lo que buscas</h2>
     </div>
 </section>

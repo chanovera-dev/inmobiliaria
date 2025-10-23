@@ -1,0 +1,11 @@
+.site-main {
+    & section#filter-properties.block {
+        & .content {
+            padding: 50px 0;
+            
+            & .title-section {
+                text-align: center;
+            }
+        }
+    }
+}
