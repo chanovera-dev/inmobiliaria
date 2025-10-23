@@ -79,15 +79,6 @@ body {
             border-radius: 1.2rem !important;
             corner-shape: squircle;
         }
-
-        & .property--header {
-            border-radius: 1.2rem 1.2rem 0 0!important;
-            corner-shape: squircle;
-
-            & .type {
-                border-radius: 1rem !important;
-            }
-        }
     }
 }
 
@@ -104,7 +95,7 @@ img {
 }
 
 & .glass-backdrop {
-    background-color: light-dark(var(--wp--preset--color--base-alpha), var(--base-alpha-dark));
+    background-color: light-dark(var(--wp--preset--color--base-alpha), var(--base-alpha-dark)) !important;
     backdrop-filter: blur(10px);
 }
 
