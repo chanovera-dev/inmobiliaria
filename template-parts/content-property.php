@@ -1,5 +1,5 @@
 <article class="property">
-    <header class="property--header">
+    <header class="property--header glass-bright">
         <?php echo get_the_post_thumbnail( null, 'property-header-thumbnail', [ 'class' => 'property-thumbnail', 'alt'   => get_the_title(), 'loading' => 'lazy' ] ); ?>
         <div class="glass-reflex"></div>
         <?php

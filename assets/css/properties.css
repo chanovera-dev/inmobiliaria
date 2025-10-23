@@ -3,7 +3,7 @@
         & .content.properties {
             padding: 50px 0;
             display: grid;
-            gap: 30px;
+            gap: 50px;
 
             & .properties--sidebar {
                 & .property-filter-form {
@@ -186,14 +186,13 @@
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                 place-content: start;
-                gap: 30px;
+                gap: 50px;
 
                 & .property {
                     display: grid;
                     grid-template-rows: auto 1fr;
                     font-size: var(--wp--preset--font-size--small);
-                    box-shadow: rgba(50, 50, 93, 0.125) 0px 13px 27px -5px, rgba(0, 0, 0, 0.15) 0px 8px 16px -8px;
-                    border-radius: 8px;
+                    border-radius: 1rem;
                     overflow: hidden;
                     opacity: 0;
                     transform: translateY(-30px);
@@ -203,7 +202,7 @@
                         position: relative;
                         aspect-ratio: 4 / 3;
                         overflow: hidden;
-                        border-radius: 8px 8px 0 0;
+                        border-radius: 1rem;
                         padding: 10px;
 
                         & .wp-post-image {
@@ -213,22 +212,6 @@
                             aspect-ratio: 1 / 1;
                             z-index: -2;
                             transition: transform .3s ease-in-out, filter .3s ease-in-out;
-                        }
-
-                        &::before,
-                        &::after {
-                            position: absolute;
-                            content: '';
-                            top: 0; left: 0; width: 100%; height: 100%;
-                            border: 1px solid light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849));
-                            mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849)), light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 50%);
-                            border-radius: inherit;
-                            corner-shape: inherit;
-                            z-index: -1;
-                        }
-
-                        &::after {
-                            mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 76%, light-dark(hsla(0, 0%, 100%, 0.644), hsla(0, 0%, 100%, 0.644)));
                         }
 
                         & .glass-reflex {
@@ -248,15 +231,14 @@
                     }
 
                     & .property--body {
+                        margin-top: 1rem;
                         display: grid;
                         grid-template-rows: 1fr auto;
-                        background-color: light-dark(var(--wp--preset--color--base), var(--secondary-dark));
-                        padding: 20px;
 
                         & .property--body--heading {
                             display: grid;
                             grid-template-rows: 1fr auto;
-                            padding-bottom: 10px;
+                            padding-bottom: 1rem;
                             
                             & .property--permalink {
                                 transition: color .3s ease-in-out;
@@ -265,6 +247,8 @@
                                     text-transform: lowercase;
                                     font-size: var(--wp--preset--font-size--large);
                                     font-weight: 600;
+                                    line-height: 1.4;
+                                    margin-bottom: .5rem;
                                     
                                     &::first-letter {
                                         text-transform: capitalize;
@@ -291,7 +275,7 @@
                             align-items: end;
                             grid-template-columns: 1fr auto;
                             grid-template-rows: 1fr 1fr;
-                            padding-top: 10px;
+                            padding-top: 1rem;
                             border-top: 2px dashed var(--wp--preset--color--accent-6);
                             
                             & ul {
@@ -375,4 +359,15 @@
 @keyframes property--animation {
     0% {opacity: 0; transform: translateY(-30px);}
     100% {opacity: 1; transform: translateY(0);}
+}
+
+body.is-chromium {
+    & .property--header {
+        border-radius: 2rem !important;
+        corner-shape: squircle;
+
+        & .type {
+            border-radius: 1rem !important;
+        }
+    }
 }
