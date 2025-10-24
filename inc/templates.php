@@ -61,6 +61,7 @@ function page_template() {
         $page_css = "$assets_path/css/page.css";
         $single_css = "$assets_path/css/single.css";
         $related_css = "$assets_path/css/posts.css";
+        $shapes_css = "$assets_path/css/shapes.css";
         $comments_css = "$assets_path/css/comments.css";
         $page_thumbnail = "$assets_path/css/page-thumbnail.css";
         $parallax_hero = "$assets_path/js/parallax-hero.js";
@@ -76,6 +77,7 @@ function page_template() {
         if ( is_single() ) {
             inmobiliaria_enqueue_style( 'single', $single_css );
             inmobiliaria_enqueue_style( 'related-posts', $related_css );
+            inmobiliaria_enqueue_style( 'shapes', $shapes_css );
             // $related_posts = get_posts( [
             //     'post__not_in' => [ $post_id ],
             //     'posts_per_page' => 1,
