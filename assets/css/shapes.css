@@ -289,7 +289,7 @@ body.is-chromium {
     }
 
     & .tag-type {
-        border-radius: .5rem;
+        border-radius: 1rem;
         corner-shape: squircle;
     }
 
