@@ -86,14 +86,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         slideshow.style.transition = "none";
                         slideshow.style.transform = `translateX(-${(100 / totalSlides) * currentSlide}%)`;
                         requestAnimationFrame(() => {
-                            slideshow.style.transition = "";
+                            slideshow.style.transition = "ease";
                         });
                     } else if (currentSlide === totalSlides - 1) {
                         currentSlide = 1;
                         slideshow.style.transition = "none";
                         slideshow.style.transform = `translateX(-${(100 / totalSlides) * currentSlide}%)`;
                         requestAnimationFrame(() => {
-                            slideshow.style.transition = "";
+                            slideshow.style.transition = "ease";
                         });
                     }
 

@@ -111,7 +111,7 @@ img {
         mask-image: linear-gradient(135deg, light-dark(hsla(0, 0%, 100%, 0.849), hsla(0, 0%, 100%, 0.849)), light-dark(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0)) 50%);
         border-radius: inherit;
         corner-shape: inherit;
-        z-index: -1;
+        z-index: 0;
     }
 
     &::after {
