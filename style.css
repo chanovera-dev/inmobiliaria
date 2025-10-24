@@ -21,12 +21,6 @@ body {
             corner-shape: squircle;
         }
 
-        & .block.page {
-            & .content.heading {
-                corner-shape: squircle;
-            }
-        }
-
         & .content-author {
             border-radius: 1rem;
             corner-shape: squircle;
@@ -155,10 +149,6 @@ img {
     & .content {
         width: var(--max-width--content);
         margin-inline: auto;
-
-        &.heading {
-            width: min(100% - 2.5rem, 60rem);
-        }
 
         & .site-brand {
             display: flex;
