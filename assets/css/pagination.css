@@ -5,6 +5,7 @@
     align-items:center;
     position: relative;
     overflow: hidden;
+    margin-top: 34px;
 
     & .nav-links {
         display: flex;
@@ -13,8 +14,9 @@
             position:relative;
             display: grid;
             place-content: center;
-            width: 48px;
-            height: 48px;
+            width: 46px;
+            height: 46px;
+            border-radius: .5rem;
             transition: all .3s ease;
 
             &.current {
@@ -69,5 +71,16 @@
 
     100% {
         width: 15px;
+    }
+}
+
+body.is-chromium {
+    & .pagination.navigation {
+        & .nav-links {
+            & .page-numbers {
+                border-radius: 1rem !important;
+                corner-shape: squircle;
+            }
+        }
     }
 }

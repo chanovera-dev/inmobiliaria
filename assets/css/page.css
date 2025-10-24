@@ -61,6 +61,12 @@ header.block.page {
             max-width: 40.313rem;
             margin-block-start: 8.988rem;
             margin-block-end: 5rem;
+            /* background-color: #1c1c1c;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: rgba(255, 255, 255, 0.5) 0px 2px 2px; */
         }
 
         & .latest-modified,

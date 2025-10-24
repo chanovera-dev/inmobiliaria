@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!slideshow) return;
 
     function prev() {
-      const firstSlide = slideshow.querySelector('.property');
+      const firstSlide = slideshow.querySelector('.post');
       slideshow.style.transition = 'all .5s ease-in-out';
       slideshow.style.transform = 'translateX(-12.5%)';
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function next() {
-      const slides = slideshow.querySelectorAll('.property');
+      const slides = slideshow.querySelectorAll('.post');
       const lastSlide = slides[slides.length - 1];
       slideshow.style.transition = 'none';
       slideshow.insertBefore(lastSlide, slideshow.firstChild);

@@ -11,6 +11,9 @@
     --contrast-dark: oklch(from var(--wp--preset--color--contrast) clamp(1, l + 0, 0) calc(c * 1) calc(h * 1));
     --secondary-dark: oklch(from var(--wp--preset--color--secondary) clamp(.2, l + 0, 0) calc(c * 1) calc(h * 1));
 
+    --main--lighter: oklch(from var(--wp--preset--color--main) calc(l + .2) c h);
+    --main--lighter-plus: oklch(from var(--wp--preset--color--main-alpha) calc(l + .3) c calc(h * .88));
+
     --green--lighter: oklch(from var(--wp--preset--color--green) calc(l + .2) c h);
     --green--lighter-plus: oklch(from var(--wp--preset--color--green-alpha) calc(l + .3) c calc(h * .88));
     --green--darker: oklch(from var(--wp--preset--color--green) clamp(0, l - 0.3, 1) calc(c * 1.1) calc(h * .82));
@@ -19,6 +22,7 @@
     --modern-text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
                           0px 8px 13px rgba(0,0,0,0.1),
                           0px 18px 23px rgba(0,0,0,0.1);
+    --form-shadow: 0 0 0 .2rem var(--wp--preset--color--green-alpha);
 }
 
 

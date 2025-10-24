@@ -254,32 +254,6 @@
                             }
                         }
                     }
-
-                    & :is(.slideshow-prev,.slideshow-next) {
-                        display: grid;
-                        place-content: center;
-                        width: 64px;
-                        height: 64px;
-                        border: none;
-                        background-color: transparent !important;
-                        border: none;
-                        border-radius: 8px;
-                        transition: background-color .3s ease, backdrop-filter .3s ease;
-
-                        &:hover {
-                            background-color: light-dark(var(--wp--preset--color--base-alpha), var(--base-alpha-dark)) !important;
-                            cursor: pointer;
-
-                            & svg {
-                                fill: light-dark(var(--wp--preset--color--contrast), var(--wp--preset--color--base));
-                            }
-                        }
-
-                        & svg {
-                            fill: light-dark(var(--wp--preset--color--base), var(--wp--preset--color--base));
-                            transition: fill .3s ease;
-                        }
-                    }
                 }
             }
         }

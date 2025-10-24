@@ -30,6 +30,16 @@
 				},
 				{
 					"color": "#127128",
+					"name": "Main",
+					"slug": "main"
+				},
+				{
+					"color": "#1271284d",
+					"name": "Main Alpha",
+					"slug": "main-alpha"
+				},
+				{
+					"color": "#127128",
 					"name": "Green",
 					"slug": "green"
 				},
@@ -47,6 +57,16 @@
 					"color": "color-mix(in srgb, currentColor 20%, transparent)",
 					"name": "Accent 6",
 					"slug": "accent-6"
+				},
+				{
+					"color": "color-mix(in srgb, currentColor 12%, transparent)",
+					"name": "Border line",
+					"slug": "border-line"
+				},
+				{
+					"color": "color-mix(in srgb, currentColor 15%, transparent)",
+					"name": "Border line Dark",
+					"slug": "border-line-dark"
 				}
 			]
 		},

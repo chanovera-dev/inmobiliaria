@@ -35,7 +35,6 @@ while ( have_posts() ) : the_post();
     <article class="property" id="<?php the_ID(); ?>">
         <?php require_once locate_template('templates/breadcrumbs.php' ); ?>
         <header class="block property--heading">
-            <?php echo get_the_post_thumbnail( null, 'single-property--full', [ 'class' => 'background-header background-hero', 'alt' => get_the_title(), 'loading' => 'lazy', 'data-speed' => '0.2' ] ); ?>
             <div class="content">
                 <div class="property-data--wrapper">
                     <?php the_title( '<h1 class="property-title">', '</h1>' ); ?>
@@ -77,9 +76,28 @@ while ( have_posts() ) : the_post();
                 </div>
 
                 <div class="property--big-image--wrapper">
-                    <div class="property--big-image">
-                        <?php echo get_the_post_thumbnail( null, 'single-property--full', [ 'class' => 'property-thumbnail background-hero', 'alt' => get_the_title(), 'loading' => 'lazy', 'data-speed' => '0.25' ] ); ?>
-                    </div>  
+                    <!-- GALERY -->
+                    <?php if ( !empty($gallery) && is_array($gallery) ) : ?>
+                        <div class="property-gallery">
+                            <div class="property-gallery--main">
+                                <?php
+                                    $first_image = is_array($gallery[0]) ? $gallery[0]['url'] : $gallery[0];
+                                ?>
+                                <img src="<?php echo esc_url( $first_image ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="active">
+                            </div>
+
+                            <div class="property-gallery--thumbs-wrapper">
+                                <button class="thumbs-btn prev btn-pagination small-pagination glass-backdrop" aria-label="Anterior"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/></svg></button>
+                                <div class="property-gallery--thumbs">
+                                    <?php foreach ( $gallery as $img ) :
+                                        $img_url = is_array($img) ? $img['url'] : $img; ?>
+                                        <img src="<?php echo esc_url( $img_url ); ?>" alt="" class="thumb">
+                                    <?php endforeach; ?>
+                                </div>
+                                <button class="thumbs-btn next btn-pagination small-pagination glass-backdrop" aria-label="Siguiente"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/></svg></button>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </header>
@@ -153,29 +171,7 @@ while ( have_posts() ) : the_post();
                                 echo ' m² de terreno</li>';
                             }
                         ?>
-                    </ul>
-                    <!-- GALERY -->
-                    <?php if ( !empty($gallery) && is_array($gallery) ) : ?>
-                    <div class="property-gallery">
-                        <div class="property-gallery--main">
-                            <?php
-                                $first_image = is_array($gallery[0]) ? $gallery[0]['url'] : $gallery[0];
-                            ?>
-                            <img src="<?php echo esc_url( $first_image ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="active">
-                        </div>
-
-                        <div class="property-gallery--thumbs-wrapper">
-                            <button class="thumbs-btn prev" aria-label="Anterior"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/></svg></button>
-                            <div class="property-gallery--thumbs">
-                                <?php foreach ( $gallery as $img ) :
-                                    $img_url = is_array($img) ? $img['url'] : $img; ?>
-                                    <img src="<?php echo esc_url( $img_url ); ?>" alt="" class="thumb">
-                                <?php endforeach; ?>
-                            </div>
-                            <button class="thumbs-btn next" aria-label="Siguiente"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/></svg></button>
-                        </div>
-                    </div>
-                <?php endif; ?>
+                    </ul>                
                 </div>
                 <div class="is-layout-constrained">
                     <?php the_content(); ?>
@@ -226,10 +222,10 @@ while ( have_posts() ) : the_post();
 
             if ($query->have_posts()) {
                 echo '<section class="block related properties"><div class="content"><h2 class="title-section">Propiedades <span>cercanas</span></h2><div class="slideshow-buttons">
-                <button id="related-products--backward-button" class="backward-button slideshow-button">
+                <button id="related-products--backward-button" class="backward-button slideshow-button btn-pagination small-pagination">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/></svg>
                 </button>
-                <button id="related-products--forward-button" class="forward-button slideshow-button">
+                <button id="related-products--forward-button" class="forward-button slideshow-button btn-pagination small-pagination">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/></svg>
                 </button>
             </div></div>';

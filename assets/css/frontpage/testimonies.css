@@ -137,25 +137,6 @@
                         & .slideshow-bullets {
                             display: none;
                         }
-
-                        & :is(.slideshow-prev,.slideshow-next) {
-                            display: grid;
-                            place-content: center;
-                            width:64px;
-                            height: 64px;
-                            border: none;
-                            transition: background-color .3s ease;
-
-                            &::before,
-                            &::after {
-                                border-radius: inherit;
-                            }
-
-                            &:hover {
-                                background-color: light-dark(var(--wp--preset--color--secondary), var(--secondary-dark)) !important;
-                                cursor: pointer;
-                            }
-                        }
                     }
                 }
             }

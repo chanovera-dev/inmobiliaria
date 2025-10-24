@@ -1,24 +1,25 @@
-<article class="property">
-    <header class="property--header glass-bright">
-        <?php echo get_the_post_thumbnail( null, 'property-header-thumbnail', [ 'class' => 'property-thumbnail', 'alt'   => get_the_title(), 'loading' => 'lazy' ] ); ?>
+<article class="post">
+    <header class="post--header glass-bright">
+        <?php echo get_the_post_thumbnail( null, 'post-header-thumbnail', [ 'class' => 'post-thumbnail', 'alt'   => get_the_title(), 'loading' => 'lazy' ] ); ?>
         <div class="glass-reflex"></div>
-        <?php
-            $type = get_post_meta(get_the_ID(), 'eb_property_type', true) ?: 'Sin tipo';
-            echo '<span class="btn btn-small type"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.5391 8.67606V15.5524C20.5512 15.8014 20.4327 16.0559 20.1845 16.196L13.0531 20.2197C12.4152 20.5797 11.6357 20.5807 10.9969 20.2223L3.82016 16.1968C3.5659 16.0542 3.44711 15.7917 3.46487 15.5374V8.69449C3.44687 8.44374 3.56156 8.18452 3.80996 8.0397L10.9664 3.86752C11.6207 3.48606 12.4299 3.4871 13.0832 3.87025L20.1945 8.04063C20.4357 8.18211 20.5503 8.43167 20.5391 8.67606Z" stroke="currentColor"/><path d="M3.82019 9.25312C3.3487 8.98865 3.34307 8.31197 3.81009 8.03969L10.9665 3.86751C11.6209 3.48605 12.43 3.48709 13.0834 3.87024L20.1946 8.04062C20.6596 8.31329 20.6539 8.98739 20.1845 9.25227L13.0531 13.276C12.4152 13.636 11.6357 13.637 10.9969 13.2786L3.82019 9.25312Z" stroke="currentColor"/></svg>Tipo: ';
-            echo $type;
-            echo '</span>';
-        ?>
-        <?php
-            $operation = get_post_meta( get_the_ID(), 'eb_operation', true );
-            echo '<span class="btn btn-small type"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16"><path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></svg>';
-            echo $operation === 'sale' ? 'En venta' : ( $operation === 'rental' ? 'En renta' : '' );
-            echo '</span>';
-        ?>
+        <div class="tags">
+            <?php
+                $type = get_post_meta(get_the_ID(), 'eb_property_type', true) ?: 'Sin tipo';
+                echo '<span class="tag-type small-text glass-backdrop glass-bright"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.5391 8.67606V15.5524C20.5512 15.8014 20.4327 16.0559 20.1845 16.196L13.0531 20.2197C12.4152 20.5797 11.6357 20.5807 10.9969 20.2223L3.82016 16.1968C3.5659 16.0542 3.44711 15.7917 3.46487 15.5374V8.69449C3.44687 8.44374 3.56156 8.18452 3.80996 8.0397L10.9664 3.86752C11.6207 3.48606 12.4299 3.4871 13.0832 3.87025L20.1945 8.04063C20.4357 8.18211 20.5503 8.43167 20.5391 8.67606Z" stroke="currentColor"/><path d="M3.82019 9.25312C3.3487 8.98865 3.34307 8.31197 3.81009 8.03969L10.9665 3.86751C11.6209 3.48605 12.43 3.48709 13.0834 3.87024L20.1946 8.04062C20.6596 8.31329 20.6539 8.98739 20.1845 9.25227L13.0531 13.276C12.4152 13.636 11.6357 13.637 10.9969 13.2786L3.82019 9.25312Z" stroke="currentColor"/></svg>Tipo: ';
+                echo $type;
+                echo '</span>';
+
+                $operation = get_post_meta( get_the_ID(), 'eb_operation', true );
+                echo '<span class="tag-type small-text glass-backdrop glass-bright"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16"><path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></svg>';
+                echo $operation === 'sale' ? 'En venta' : ( $operation === 'rental' ? 'En renta' : '' );
+                echo '</span>';
+            ?>
+        </div>
     </header>
-    <div class="property--body">
-        <div class="property--body--heading">
-            <a href="<?php the_permalink();?>" class="property--permalink">
-                <?php the_title('<h3 class="property--title">', '</h3>'); ?>
+    <div class="post--body">
+        <div class="post--body__header">
+            <a href="<?php the_permalink();?>" class="post--permalink">
+                <?php the_title('<h3 class="post--title">', '</h3>'); ?>
             </a>
             <?php $location = get_post_meta( get_the_ID(), 'eb_location', true ); ?>
             <p class="location">
@@ -29,12 +30,12 @@
                 <?php echo $location; ?>
             </p>
         </div>
-        <div class="property--metadata">
-            <ul>
+        <div class="post--metadata">
+            <ul class="rooms">
                 <?php
                     $bedrooms = get_post_meta(get_the_ID(), 'eb_bedrooms', true);
                     if (!empty($bedrooms) && $bedrooms != 0) {
-                        echo '<li class="bedroom"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" fill="currentColor" width="16px" height="16px" viewBox="0 0 512 512"><path d="M384 240H96V136a40.12 40.12 0 0140-40h240a40.12 40.12 0 0140 40v104zM48 416V304a64.19 64.19 0 0164-64h288a64.19 64.19 0 0164 64v112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M48 416v-8a24.07 24.07 0 0124-24h368a24.07 24.07 0 0124 24v8M112 240v-16a32.09 32.09 0 0132-32h80a32.09 32.09 0 0132 32v16M256 240v-16a32.09 32.09 0 0132-32h80a32.09 32.09 0 0132 32v16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>';
+                        echo '<li class="bedroom"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" fill="currentColor" width="19px" height="19px" viewBox="0 0 512 512"><path d="M384 240H96V136a40.12 40.12 0 0140-40h240a40.12 40.12 0 0140 40v104zM48 416V304a64.19 64.19 0 0164-64h288a64.19 64.19 0 0164 64v112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="20"/><path d="M48 416v-8a24.07 24.07 0 0124-24h368a24.07 24.07 0 0124 24v8M112 240v-16a32.09 32.09 0 0132-32h80a32.09 32.09 0 0132 32v16M256 240v-16a32.09 32.09 0 0132-32h80a32.09 32.09 0 0132 32v16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="20"/></svg>';
                         echo $bedrooms;
                         echo '</li>';
                     }
@@ -47,7 +48,7 @@
                     }
                 ?>
             </ul>
-            <ul>
+            <ul class="sizes">
                 <?php
                     $construction = get_post_meta(get_the_ID(), 'eb_construction_size', true);
                     if (!empty($construction) && $construction != 0) {
