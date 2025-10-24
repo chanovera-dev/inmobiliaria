@@ -46,6 +46,11 @@
                     animation: mark-pagination .3s ease forwards;
                 }
             }
+
+            & svg {
+                width: 24px;
+                height: 24px;
+            }
         }
 
         & :is(.page-numbers.prev,.page-numbers.next) {
