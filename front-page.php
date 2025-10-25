@@ -22,7 +22,7 @@ get_header(); ?>
             'frontpage/why-choose-us',
             'frontpage/testimonies',
             'frontpage/call-to-action',
-            // 'frontpage/about-us',
+            'frontpage/about-us',
             // 'frontpage/blog',
             // 'frontpage/contact',
             // 'frontpage/interactive-map',

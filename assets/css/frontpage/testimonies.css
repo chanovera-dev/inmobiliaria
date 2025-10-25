@@ -1,6 +1,6 @@
 .site-main {
     & #testimonies.block {
-        padding: 100px 0;
+        padding: 100px 0 70px;
         background-color: light-dark(var(--wp--preset--color--base), var(--base-dark));
 
         & .content:nth-child(1) {
