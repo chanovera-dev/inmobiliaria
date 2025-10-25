@@ -11,6 +11,11 @@
             height: 130%;
             object-fit: cover;
             z-index: -1;
+            opacity: 0;
+
+            &.animate-in {
+                animation: backgrounCTA--animation 1s ease forwards;
+            }
         }
 
         &::before {
@@ -87,25 +92,16 @@
                 transition: transform 0.5s ease-in-out;
                 /* Para suavizar la animación */
                 display: inline-block;
-                animation: floatRotate 3s ease-in-out infinite;
 
                 & img {
                     border-radius: .5rem;
                 }
+
+                &.animate-in {
+                    animation: floatRotate 2s ease-in-out 1s forwards;
+                }
             }
         }
-    }
-}
-
-@keyframes floatRotate {
-    0% {
-        transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
-    }
-    50% {
-        transform: translateZ(100px) rotateX(10deg) rotateY(15deg);
-    }
-    100% {
-        transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
     }
 }
 
@@ -149,7 +145,11 @@
                     margin-top: 0;
                     position: absolute;
                     top: 30%;
-                    left: 58%;
+                    opacity: 0;
+
+                    &.animate-in {
+                        animation: floatRotate 2s ease-in-out 1s forwards, animateInPicture .9s ease-in-out forwards;
+                    }
                 }
             }
         }
@@ -165,5 +165,39 @@ body.is-chromium {
             border-radius: 1rem !important;
             corner-shape: squircle;
         }
+    }
+}
+
+@keyframes backgrounCTA--animation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes animateInPicture {
+    0% {
+        right: -100%;
+        opacity: 0;
+    }
+
+    100% {
+        right: 4%;
+        opacity: 1;
+    }
+}
+
+@keyframes floatRotate {
+    0% {
+        transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+        transform: translateZ(100px) rotateX(10deg) rotateY(15deg);
+    }
+    100% {
+        transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
     }
 }

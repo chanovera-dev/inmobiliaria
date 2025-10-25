@@ -167,6 +167,7 @@ function frontpage_template() {
         $choose_us_css           = "$assets_path/css/frontpage/why-choose-us.css";
         $testimonies_css         = "$assets_path/css/frontpage/testimonies.css";
         $cta_css                 = "$assets_path/css/frontpage/call-to-action.css";
+        $animate_js              = "$assets_path/js/animate-in.js";
         $featured_properties_js  = "$assets_path/js/slideshow.js";
         $parallax_js             = "$assets_path/js/parallax.js";
         $cta_js                  = "$assets_path/js/cta-numbers.js";
@@ -180,6 +181,7 @@ function frontpage_template() {
         inmobiliaria_enqueue_style( 'testimonies', $testimonies_css );
         inmobiliaria_enqueue_style( 'call-to-action', $cta_css );
 
+        inmobiliaria_enqueue_script( 'animate-in', $animate_js );
         inmobiliaria_enqueue_script( 'featured-properties-slideshow', $featured_properties_js );
         inmobiliaria_enqueue_script( 'parallax', $parallax_js );
         inmobiliaria_enqueue_script( 'numbers-animation', $cta_js );
