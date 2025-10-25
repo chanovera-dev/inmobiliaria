@@ -175,6 +175,7 @@ function frontpage_template() {
         wp_dequeue_style( 'page' );
         wp_dequeue_style( 'wp-block-library' );
         wp_dequeue_script( 'property-filter' );
+        wp_dequeue_script( 'reset' );
 
         inmobiliaria_enqueue_style( 'shapes', $shapes_css );
         inmobiliaria_enqueue_style( 'frontpage', $frontpage_css );
