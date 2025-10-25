@@ -384,201 +384,162 @@ add_action('wp_ajax_filter_properties', 'ajax_filter_properties');
 add_action('wp_ajax_nopriv_filter_properties', 'ajax_filter_properties');
 
 function ajax_filter_properties() {
+    global $wpdb;
+
     $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
 
-    $args = array(
-        'post_type'      => 'property',
-        'post_status'    => 'publish',
-        'posts_per_page' => 12,
-        'paged'          => $paged,
-    );
+    // Keyword search
+    $search_term = !empty($_POST['search']) ? sanitize_text_field($_POST['search']) : '';
 
-    /* ===========================
-    SEARCH (Keyword)
-    ============================ */
-    add_filter('posts_search', function($search, $wp_query) {
-        global $wpdb;
-
-        // Only modify queries that have the 's' parameter
-        if ($term = $wp_query->get('s')) {
-            $search = $wpdb->prepare(
-                " AND {$wpdb->posts}.post_title LIKE %s ",
-                '%' . $wpdb->esc_like($term) . '%'
-            );
-        }
-
-        return $search;
-    }, 10, 2);
-
-
-    // --- Collect search parameters (works for both GET and POST) ---
-    $search_term    = isset($_REQUEST['search']) ? sanitize_text_field($_REQUEST['search']) : '';   // keyword
-    $operation_type = isset($_REQUEST['operation']) ? sanitize_text_field($_REQUEST['operation']) : ''; // sale / rent
-    $property_type  = isset($_REQUEST['type']) ? sanitize_text_field($_REQUEST['type']) : ''; // house / apartment / land
-
-
-    // --- Build dynamic meta_query array ---
-    $meta_query = [];
-
-    if ($operation_type) {
-        $meta_query[] = [
-            'key'     => 'eb_operation', // your ACF field for operation type
-            'value'   => $operation_type,
-            'compare' => '='
-        ];
-    }
-
-    if ($property_type) {
-        $meta_query[] = [
-            'key'     => 'eb_type', // your ACF field for property type
-            'value'   => $property_type,
-            'compare' => '='
-        ];
-    }
-
-
-    // --- Build the WP_Query arguments ---
+    // Initialize args
     $args = [
         'post_type'      => 'property',
-        'posts_per_page' => 10,
-        's'              => $search_term, // keyword search (filtered to title only)
-        'meta_query'     => $meta_query,
-        'order'          => 'DESC',
+        'posts_per_page' => 12,
         'post_status'    => 'publish',
+        'order'          => 'DESC',
+        'paged'          => $paged,
     ];
 
-    /* ===========================
-       OPERATION (Sale / Rent)
-    ============================ */
+    if ($search_term) {
+        $args['s'] = $search_term;
+        // Filter search to title only
+        add_filter('posts_search', function($search, $wp_query) use ($wpdb) {
+            if ($term = $wp_query->get('s')) {
+                $search = $wpdb->prepare(
+                    " AND {$wpdb->posts}.post_title LIKE %s ",
+                    '%' . $wpdb->esc_like($term) . '%'
+                );
+            }
+            return $search;
+        }, 10, 2);
+    }
+
+    // Build meta_query
+    $meta_query = ['relation' => 'AND'];
+
+    // Operation type
     if (!empty($_POST['operation'])) {
-        $args['meta_query'][] = [
-            'key' => 'eb_operation',
-            'value' => (array) $_POST['operation'],
-            'compare' => 'IN'
+        $meta_query[] = [
+            'key'     => 'eb_operation',
+            'value'   => (array) $_POST['operation'],
+            'compare' => 'IN',
         ];
     }
 
-    /* ===========================
-       PROPERTY TYPE
-    ============================ */
+    // Property type
     if (!empty($_POST['type'])) {
-        $args['meta_query'][] = [
-            'key' => 'eb_property_type',
-            'value' => (array) $_POST['type'],
-            'compare' => 'IN'
+        $meta_query[] = [
+            'key'     => 'eb_property_type',
+            'value'   => (array) $_POST['type'],
+            'compare' => 'IN',
         ];
     }
 
-    /* ===========================
-       LOCATION (State / City)
-    ============================ */
-    $meta_location = [];
-
+    // Location (state / city)
+    $location_meta = [];
     if (!empty($_POST['state'])) {
         foreach ((array) $_POST['state'] as $state) {
-            $meta_location[] = [
-                'key' => 'eb_location',
-                'value' => sanitize_text_field($state),
-                'compare' => 'LIKE'
+            $location_meta[] = [
+                'key'     => 'eb_location',
+                'value'   => sanitize_text_field($state),
+                'compare' => 'LIKE',
             ];
         }
     }
-
     if (!empty($_POST['city'])) {
         foreach ((array) $_POST['city'] as $city) {
-            $meta_location[] = [
-                'key' => 'eb_location',
-                'value' => sanitize_text_field($city),
-                'compare' => 'LIKE'
+            $location_meta[] = [
+                'key'     => 'eb_location',
+                'value'   => sanitize_text_field($city),
+                'compare' => 'LIKE',
             ];
         }
     }
-
-    if (!empty($meta_location)) {
-        $args['meta_query'][] = array_merge(['relation' => 'OR'], $meta_location);
+    if (!empty($location_meta)) {
+        $meta_query[] = array_merge(['relation' => 'OR'], $location_meta);
     }
 
-    /* ===========================
-       BEDROOMS
-    ============================ */
+    // Bedrooms
     if (!empty($_POST['bedrooms'])) {
-        $args['meta_query'][] = [
-            'key' => 'eb_bedrooms',
-            'value' => intval($_POST['bedrooms']),
+        $meta_query[] = [
+            'key'     => 'eb_bedrooms',
+            'value'   => intval($_POST['bedrooms']),
             'compare' => '=',
-            'type' => 'NUMERIC'
+            'type'    => 'NUMERIC',
         ];
     }
 
-    /* ===========================
-       BATHROOMS
-    ============================ */
+    // Bathrooms
     if (!empty($_POST['bathrooms'])) {
-        $args['meta_query'][] = [
-            'key' => 'eb_bathrooms',
-            'value' => intval($_POST['bathrooms']),
+        $meta_query[] = [
+            'key'     => 'eb_bathrooms',
+            'value'   => intval($_POST['bathrooms']),
             'compare' => '=',
-            'type' => 'NUMERIC'
+            'type'    => 'NUMERIC',
         ];
     }
 
-    /* ===========================
-       PRICE RANGE
-    ============================ */
+    // Price range
+    $price_min = isset($_POST['price_min']) && $_POST['price_min'] !== '' ? floatval($_POST['price_min']) : 0;
+    $price_max = isset($_POST['price_max']) && $_POST['price_max'] !== '' ? floatval($_POST['price_max']) : PHP_INT_MAX;
+    if ($price_min > 0 || $price_max < PHP_INT_MAX) {
+        $meta_query[] = [
+            'key'     => 'eb_price_num',
+            'value'   => [$price_min, $price_max],
+            'compare' => 'BETWEEN',
+            'type'    => 'NUMERIC',
+        ];
+    }
 
-
-    /* ===========================
-       CONSTRUCTION SIZE (range)
-    ============================ */
+    // Construction size range
     $construction_min = isset($_POST['construction_min']) && $_POST['construction_min'] !== '' ? floatval($_POST['construction_min']) : 0;
     $construction_max = isset($_POST['construction_max']) && $_POST['construction_max'] !== '' ? floatval($_POST['construction_max']) : PHP_INT_MAX;
-
     if ($construction_min > 0 || $construction_max < PHP_INT_MAX) {
-        $args['meta_query'][] = [
-            'key' => 'eb_construction_size',
-            'value' => [$construction_min, $construction_max],
+        $meta_query[] = [
+            'key'     => 'eb_construction_size',
+            'value'   => [$construction_min, $construction_max],
             'compare' => 'BETWEEN',
-            'type' => 'NUMERIC'
+            'type'    => 'NUMERIC',
         ];
     }
 
-    /* ===========================
-       LOT SIZE (range)
-    ============================ */
-    $lot_min = isset($_POST['lot_min']) && $_POST['lot_min'] !== '' ? floatval($_POST['lot_min']) : 0;
-    $lot_max = isset($_POST['lot_max']) && $_POST['lot_max'] !== '' ? floatval($_POST['lot_max']) : PHP_INT_MAX;
-
+    // Lot size range
+    $lot_min = isset($_POST['land_min']) && $_POST['land_min'] !== '' ? floatval($_POST['land_min']) : 0;
+    $lot_max = isset($_POST['land_max']) && $_POST['land_max'] !== '' ? floatval($_POST['land_max']) : PHP_INT_MAX;
     if ($lot_min > 0 || $lot_max < PHP_INT_MAX) {
-        $args['meta_query'][] = [
-            'key' => 'eb_lot_size',
-            'value' => [$lot_min, $lot_max],
+        $meta_query[] = [
+            'key'     => 'eb_lot_size',
+            'value'   => [$lot_min, $lot_max],
             'compare' => 'BETWEEN',
-            'type' => 'NUMERIC'
+            'type'    => 'NUMERIC',
         ];
     }
 
-    /* ===========================
-       EXECUTE QUERY
-    ============================ */
+    // Assign meta_query if not empty
+    if (!empty($meta_query)) {
+        $args['meta_query'] = $meta_query;
+    }
+
+    // Execute query
     $query = new WP_Query($args);
 
-    if ( $query->have_posts() ) {
-        while ( $query->have_posts() ) {
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
             $query->the_post();
             get_template_part('template-parts/content', 'property');
         }
 
-        // Output pagination — IMPORTANT: use $paged here
+        // Pagination
         echo '<nav class="navigation pagination" aria-label="Posts pagination">';
         echo '<h2 class="screen-reader-text">Posts pagination</h2>';
         echo '<div class="nav-links">';
-        echo paginate_links(array(
+        echo paginate_links([
             'total'   => $query->max_num_pages,
-            'current' => $paged, // <-- FIX: use $paged (value from AJAX)
+            'current' => $paged,
             'format'  => '?paged=%#%',
-            'prev_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/></svg>', // tu SVG
-            'next_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/></svg>', // tu SVG
-        ));
+            'prev_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/></svg>',
+            'next_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/></svg>',
+        ]);
         echo '</div></nav>';
     } else {
         echo '<p>No se encontraron propiedades.</p>';
