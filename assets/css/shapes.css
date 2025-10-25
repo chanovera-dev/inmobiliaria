@@ -123,12 +123,6 @@
 
         & .post--tags {
             padding-top: 1rem;
-
-            & .tag-type {
-                &:not(:last-child) {
-                    margin-right: 2px;
-                }
-            }
         }
     }
 }
@@ -193,6 +187,11 @@
 
     &.small-text {
         font-size: var(--wp--preset--font-size--small);
+
+        & svg {
+            width: 13px;
+            height: 13px;
+        }
     }
 
     &:hover {
