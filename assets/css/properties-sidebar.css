@@ -77,9 +77,6 @@
 
                             &.state {
                                 & > .sub-menu {
-                                    & > li:not(:last-child) {
-                                    }
-
                                     & li {
                                         & .sub-menu {
                                             padding: 0;

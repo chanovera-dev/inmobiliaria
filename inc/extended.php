@@ -394,6 +394,60 @@ function ajax_filter_properties() {
     );
 
     /* ===========================
+    SEARCH (Keyword)
+    ============================ */
+    add_filter('posts_search', function($search, $wp_query) {
+        global $wpdb;
+
+        // Only modify queries that have the 's' parameter
+        if ($term = $wp_query->get('s')) {
+            $search = $wpdb->prepare(
+                " AND {$wpdb->posts}.post_title LIKE %s ",
+                '%' . $wpdb->esc_like($term) . '%'
+            );
+        }
+
+        return $search;
+    }, 10, 2);
+
+
+    // --- Collect search parameters (works for both GET and POST) ---
+    $search_term    = isset($_REQUEST['search']) ? sanitize_text_field($_REQUEST['search']) : '';   // keyword
+    $operation_type = isset($_REQUEST['operation']) ? sanitize_text_field($_REQUEST['operation']) : ''; // sale / rent
+    $property_type  = isset($_REQUEST['type']) ? sanitize_text_field($_REQUEST['type']) : ''; // house / apartment / land
+
+
+    // --- Build dynamic meta_query array ---
+    $meta_query = [];
+
+    if ($operation_type) {
+        $meta_query[] = [
+            'key'     => 'eb_operation', // your ACF field for operation type
+            'value'   => $operation_type,
+            'compare' => '='
+        ];
+    }
+
+    if ($property_type) {
+        $meta_query[] = [
+            'key'     => 'eb_type', // your ACF field for property type
+            'value'   => $property_type,
+            'compare' => '='
+        ];
+    }
+
+
+    // --- Build the WP_Query arguments ---
+    $args = [
+        'post_type'      => 'property',
+        'posts_per_page' => 10,
+        's'              => $search_term, // keyword search (filtered to title only)
+        'meta_query'     => $meta_query,
+        'order'          => 'DESC',
+        'post_status'    => 'publish',
+    ];
+
+    /* ===========================
        OPERATION (Sale / Rent)
     ============================ */
     if (!empty($_POST['operation'])) {
@@ -471,17 +525,7 @@ function ajax_filter_properties() {
     /* ===========================
        PRICE RANGE
     ============================ */
-    $price_min = isset($_POST['price_min']) && $_POST['price_min'] !== '' ? floatval($_POST['price_min']) : 0;
-    $price_max = isset($_POST['price_max']) && $_POST['price_max'] !== '' ? floatval($_POST['price_max']) : PHP_INT_MAX;
 
-    if ($price_min > 0 || $price_max < PHP_INT_MAX) {
-        $args['meta_query'][] = [
-            'key' => 'eb_price',
-            'value' => [$price_min, $price_max],
-            'compare' => 'BETWEEN',
-            'type' => 'NUMERIC'
-        ];
-    }
 
     /* ===========================
        CONSTRUCTION SIZE (range)

@@ -11,10 +11,7 @@
             <button class="btn yellow button-for-submenu" type="button">
                 <?php esc_html_e('Operación', 'inmobiliaria'); ?>
                 <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 
-                        .708.708l-6 6a.5.5 0 0 1-.708 
-                        0l-6-6a.5.5 0 0 1 0-.708z"></path>
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path>
                 </svg>
             </button>
             <ul class="sub-menu">
@@ -102,11 +99,7 @@
             <button class="btn yellow button-for-submenu" type="button">
                 <?php esc_html_e('Precio', 'inmobiliaria'); ?>
                 <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M1.646 4.646a.5.5 0 0 1 
-                        .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 
-                        .708.708l-6 6a.5.5 0 0 1-.708 
-                        0l-6-6a.5.5 0 0 1 0-.708z"></path>
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path>
                 </svg>
             </button>
 

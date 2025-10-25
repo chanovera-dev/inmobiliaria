@@ -58,13 +58,13 @@ function page_template() {
     $assets_path = '/assets';
 
     if ( is_page() or is_single() ) {
-        $page_css = "$assets_path/css/page.css";
-        $single_css = "$assets_path/css/single.css";
-        $related_css = "$assets_path/css/posts.css";
-        $shapes_css = "$assets_path/css/shapes.css";
-        $comments_css = "$assets_path/css/comments.css";
+        $page_css       = "$assets_path/css/page.css";
+        $single_css     = "$assets_path/css/single.css";
+        $related_css    = "$assets_path/css/posts.css";
+        $shapes_css     = "$assets_path/css/shapes.css";
+        $comments_css   = "$assets_path/css/comments.css";
         $page_thumbnail = "$assets_path/css/page-thumbnail.css";
-        $parallax_hero = "$assets_path/js/parallax-hero.js";
+        $parallax_hero  = "$assets_path/js/parallax-hero.js";
 
         inmobiliaria_enqueue_style( 'page', $page_css );
 
@@ -112,9 +112,9 @@ function posts_styles() {
 
     if ( is_home() or is_archive() or is_search() ) {
         $breadcrumbs_css = "$assets_path/css/breadcrumbs.css";
-        $posts_css = "$assets_path/css/posts.css";
-        $shapes_css = "$assets_path/css/shapes.css";
-        $pagination_css = "$assets_path/css/pagination.css";
+        $posts_css       = "$assets_path/css/posts.css";
+        $shapes_css      = "$assets_path/css/shapes.css";
+        $pagination_css  = "$assets_path/css/pagination.css";
 
         inmobiliaria_enqueue_style( 'breadcrumbs', $breadcrumbs_css );
         inmobiliaria_enqueue_style( 'posts', $posts_css );
@@ -159,27 +159,26 @@ function frontpage_template() {
     $assets_path = '/assets';
 
     if ( is_front_page() || is_page_template( 'front-page.php' ) ) {
-        $shapes_css = "$assets_path/css/shapes.css";
-        $frontpage_css = "$assets_path/css/frontpage.css";
-        $hero_css = "$assets_path/css/frontpage/hero.css";
+        $shapes_css              = "$assets_path/css/shapes.css";
+        $frontpage_css           = "$assets_path/css/frontpage.css";
+        $hero_css                = "$assets_path/css/frontpage/hero.css";
         $featured_properties_css = "$assets_path/css/frontpage/featured-properties.css";
-        $featured_properties_js = "$assets_path/js/slideshow.js";
-        $filter_properties_js = "$assets_path/js/slideshow-related-properties.js";
-        // $parallax = "$assets_path/js/parallax.js";
-        $filter_properties_css = "$assets_path/css/frontpage/filter-properties.css";
-        $choose_us_css = "$assets_path/css/frontpage/why-choose-us.css";
-        $testimonies_css = "$assets_path/css/frontpage/testimonies.css";
+        $featured_properties_js  = "$assets_path/js/slideshow.js";
+        $filter_properties_js    = "$assets_path/js/slideshow-related-properties.js";
+        $filter_properties_css   = "$assets_path/css/frontpage/filter-properties.css";
+        $choose_us_css           = "$assets_path/css/frontpage/why-choose-us.css";
+        $testimonies_css         = "$assets_path/css/frontpage/testimonies.css";
 
         inmobiliaria_enqueue_style( 'shapes', $shapes_css );
         inmobiliaria_enqueue_style( 'frontpage', $frontpage_css );
         inmobiliaria_enqueue_style( 'hero', $hero_css );
         inmobiliaria_enqueue_style( 'featured-properties', $featured_properties_css );
-        inmobiliaria_enqueue_script( 'featured-properties-slideshow', $featured_properties_js );
-        // inmobiliaria_enqueue_script( 'parallax', $parallax );
         inmobiliaria_enqueue_style( 'filter-properties', $filter_properties_css );
-        inmobiliaria_enqueue_script( 'filter-properties-slideshow', $filter_properties_js );
         inmobiliaria_enqueue_style( 'why-choose-us', $choose_us_css );
         inmobiliaria_enqueue_style( 'testimonies', $testimonies_css );
+
+        inmobiliaria_enqueue_script( 'featured-properties-slideshow', $featured_properties_js );
+        inmobiliaria_enqueue_script( 'filter-properties-slideshow', $filter_properties_js );
     }
 }
 add_action( 'wp_enqueue_scripts', 'frontpage_template' );
@@ -204,12 +203,12 @@ function properties_templates() {
 
     if ( is_page_template( 'archive-property.php' ) ) {
         $breadcrumbs_css = "$assets_path/css/breadcrumbs.css";
-        $properties_css = "$assets_path/css/properties.css";
-        $sidebar_css = "$assets_path/css/properties-sidebar.css";
-        $shapes_css = "$assets_path/css/shapes.css";
-        $pagination_css = "$assets_path/css/pagination.css";
-        $filters = "$assets_path/js/filters.js";
-        $reset = "$assets_path/js/reset-properties-filter.js";
+        $properties_css  = "$assets_path/css/properties.css";
+        $sidebar_css     = "$assets_path/css/properties-sidebar.css";
+        $shapes_css      = "$assets_path/css/shapes.css";
+        $pagination_css  = "$assets_path/css/pagination.css";
+        $filters         = "$assets_path/js/filters.js";
+        $reset           = "$assets_path/js/reset-properties-filter.js";
 
         inmobiliaria_enqueue_style( 'breadcrumbs', $breadcrumbs_css );
         inmobiliaria_enqueue_style( 'properties', $properties_css );
@@ -225,11 +224,11 @@ function properties_templates() {
 
     if ( is_singular( 'property' ) ) {
         $breadcrumbs_css = "$assets_path/css/breadcrumbs.css";
-        $property_css = "$assets_path/css/property.css";
-        $shapes_css = "$assets_path/css/shapes.css";
-        $galery_js = "$assets_path/js/galery.js";
-        $slideshow = "$assets_path/js/slideshow-related-properties.js";
-        $parallax = "$assets_path/js/parallax.js";
+        $property_css    = "$assets_path/css/property.css";
+        $shapes_css      = "$assets_path/css/shapes.css";
+        $galery_js       = "$assets_path/js/galery.js";
+        $slideshow       = "$assets_path/js/slideshow-related-properties.js";
+        $parallax        = "$assets_path/js/parallax.js";
 
         inmobiliaria_enqueue_style( 'breadcrumbs', $breadcrumbs_css );
         inmobiliaria_enqueue_style( 'property', $property_css );
