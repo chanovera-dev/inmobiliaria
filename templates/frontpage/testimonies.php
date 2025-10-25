@@ -51,7 +51,7 @@
                                 <figure class="testimonial-media" aria-hidden="true">
                                     <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/alejandro-ruiz.webp" alt="Foto de Alejandro Ruiz" class="testimonial-avatar">
                                 </figure>
-                                <p id="t1-name" class="testimonial-author">Alejandro Ruiz</p>
+                                <p id="t2-name" class="testimonial-author">Alejandro Ruiz</p>
                                 <span class="testimonial-role">Empresario, Guadalajara</span>
                             </div>
                             <blockquote class="testimonial-quote" cite="">
@@ -77,7 +77,7 @@
                                 <figure class="testimonial-media" aria-hidden="true">
                                     <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/mariela-roberto-torres.webp" alt="Foto de Mariela y Roberto Torres" class="testimonial-avatar">
                                 </figure>
-                                <p id="t1-name" class="testimonial-author">Mariela y Roberto Torres</p>
+                                <p id="t3-name" class="testimonial-author">Mariela y Roberto Torres</p>
                                 <span class="testimonial-role">Padres de familia, Puebla</span>
                             </div>
                             <blockquote class="testimonial-quote" cite="">
@@ -103,7 +103,7 @@
                                 <figure class="testimonial-media" aria-hidden="true">
                                     <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/gabriela-lozano.webp" alt="Foto de Gabriela Lozano" class="testimonial-avatar">
                                 </figure>
-                                <p id="t1-name" class="testimonial-author">Gabriela Lozano</p>
+                                <p id="t4-name" class="testimonial-author">Gabriela Lozano</p>
                                 <span class="testimonial-role">Inversionista, CDMX</span>
                             </div>
                             <blockquote class="testimonial-quote" cite="">
@@ -129,7 +129,7 @@
                                 <figure class="testimonial-media" aria-hidden="true">
                                     <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/carlos-mendez.webp" alt="Foto de Carlos Méndez" class="testimonial-avatar">
                                 </figure>
-                                <p id="t1-name" class="testimonial-author">Carlos Méndez</p>
+                                <p id="t5-name" class="testimonial-author">Carlos Méndez</p>
                                 <span class="testimonial-role">Ingeniero, Querétaro</span>
                             </div>
                             <blockquote class="testimonial-quote" cite="">
@@ -155,7 +155,7 @@
                                 <figure class="testimonial-media" aria-hidden="true">
                                     <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/paola-sanchez.webp" alt="Foto de Paola Sánchez" class="testimonial-avatar">
                                 </figure>
-                                <p id="t1-name" class="testimonial-author">Paola Sánchez</p>
+                                <p id="t6-name" class="testimonial-author">Paola Sánchez</p>
                                 <span class="testimonial-role">Emprendedora, Mérida</span>
                             </div>
                             <blockquote class="testimonial-quote" cite="">

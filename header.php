@@ -84,7 +84,7 @@
                         echo $menu_html;
                     }
                 ?>
-                <button class="menu-mobile__button" onclick="toggleMenuMobile()">
+                <button class="menu-mobile__button" onclick="toggleMenuMobile()" aria-label="Botón para menú">
                     <span class="bar"></span>
                 </button>
             </div>
