@@ -29,6 +29,12 @@ header.block {
         & .wp-block-image.alignwide.size-large {
             max-width: 1024px;
         }
+
+        & .wp-block-image {
+            img {
+                border-radius: 1rem;
+            }
+        }
     }
 
     & .categories {
@@ -120,6 +126,25 @@ header.block {
                 > *:not(.wp-block-separator) {
                     margin-left: 1.25rem !important;
                     margin-right: 1.25rem !important;
+                }
+            }
+        }
+    }
+}
+
+body.is-chromium {
+    .site-main {
+        .block {
+            & .is-layout-constrained {
+                & .wp-block-image.alignwide.size-large {
+                    max-width: 1024px;
+                }
+
+                & .wp-block-image {
+                    img {
+                        border-radius: 2rem;
+                        corner-shape: squircle;
+                    }
                 }
             }
         }
