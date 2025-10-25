@@ -105,7 +105,9 @@
                 }
 
                 & .property--big-image--wrapper {
+                    overflow: hidden;
                     .property-gallery {
+                        padding: 0 20px;    
                         display: flex;
                         flex-direction: column;
                         overflow: hidden;
@@ -141,6 +143,7 @@
 
                         /* Carrusel */
                         & .property-gallery--thumbs {
+                            width: 100%;
                             display: flex;
                             transition: transform 0.4s ease;
                             will-change: transform;
@@ -497,7 +500,7 @@
     }
 }
 
-@media(width < 1023px) {
+@media(width < 1366px) {
     .site-main {
         & .property {
             & header.block.property--heading {

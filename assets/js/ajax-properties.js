@@ -1,7 +1,7 @@
 // ajax-properties.js
 document.addEventListener('DOMContentLoaded', () => {
   const results = document.querySelector('.properties--list, .properties-list, .properties_results');
-  const form = document.querySelector('.property-filter-form, .propiedades-filtro-form');
+  const form = document.querySelector('.property-filter-form');
 
   if (!results) return;
 

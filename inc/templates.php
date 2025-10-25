@@ -205,6 +205,7 @@ function properties_templates() {
     if ( is_page_template( 'archive-property.php' ) ) {
         $breadcrumbs_css = "$assets_path/css/breadcrumbs.css";
         $properties_css = "$assets_path/css/properties.css";
+        $sidebar_css = "$assets_path/css/properties-sidebar.css";
         $shapes_css = "$assets_path/css/shapes.css";
         $pagination_css = "$assets_path/css/pagination.css";
         $filters = "$assets_path/js/filters.js";
@@ -212,6 +213,7 @@ function properties_templates() {
 
         inmobiliaria_enqueue_style( 'breadcrumbs', $breadcrumbs_css );
         inmobiliaria_enqueue_style( 'properties', $properties_css );
+        inmobiliaria_enqueue_style( 'sidebar', $sidebar_css );
         inmobiliaria_enqueue_style( 'shapes', $shapes_css );
         inmobiliaria_enqueue_style( 'pagination', $pagination_css );
         inmobiliaria_enqueue_script( 'filters', $filters );

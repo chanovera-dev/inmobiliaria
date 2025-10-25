@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (width < 768) return 3; // móviles
         if (width >= 768 && width < 1024) {
             // tablet: depende de orientación
-            return isPortrait ? 3 : 4;
+            return isPortrait ? 4 : 4;
         }
         return 4; // desktop
     }
