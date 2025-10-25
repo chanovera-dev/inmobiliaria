@@ -25,6 +25,11 @@ header.block {
 }
 
 .block {
+    & .is-layout-constrained {
+        & .wp-block-image.alignwide.size-large {
+            max-width: 1024px;
+        }
+    }
 
     & .categories {
         width: min(100% - 2.5rem, 40.313rem);
