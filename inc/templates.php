@@ -172,6 +172,10 @@ function frontpage_template() {
         $parallax_js             = "$assets_path/js/parallax.js";
         $cta_js                  = "$assets_path/js/cta-numbers.js";
 
+        wp_dequeue_style( 'page' );
+        wp_dequeue_style( 'wp-block-library' );
+        wp_dequeue_script( 'property-filter' );
+
         inmobiliaria_enqueue_style( 'shapes', $shapes_css );
         inmobiliaria_enqueue_style( 'frontpage', $frontpage_css );
         inmobiliaria_enqueue_style( 'hero', $hero_css );

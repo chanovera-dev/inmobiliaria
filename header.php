@@ -18,9 +18,6 @@
 </head>
 <body <?php body_class(); ?>>
     <?php if ( function_exists( 'wp_body_open' ) ) { wp_body_open(); } ?>
-
-    <?php /* Skip link for accessibility */ ?>
-    <a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'inmobiliaria' ); ?></a>
     <?php if ( has_nav_menu( 'social' ) || has_nav_menu( 'contact' ) ): ?>
     <section class="block">
         <div class="content">
