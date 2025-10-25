@@ -48,14 +48,15 @@ select {
 input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="range"]):not([type="color"]):not(.wp-block-search__input):hover,
 textarea:hover,
 select:hover {
-    border-color: light-dark(var(--wp--preset--color--green), var(--wp--preset--color--green));
+    border-color: light-dark(var(--green--lighter), var(--green--lighter));
+    box-shadow: 0 0 0 .2rem var(--wp--preset--color--green-alpha);
 }
 
 input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="range"]):not([type="color"]):not(.wp-block-search__input):focus,
 textarea:focus,
 select:focus {
     outline: 0;
-    border-color: light-dark(var(--green--lighter), var(--green--lighter));
+    border-color: light-dark(var(--wp--preset--color--green), var(--wp--preset--color--green));
     box-shadow: 0 0 0 .2rem var(--wp--preset--color--green-alpha);
 }
 

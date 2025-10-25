@@ -197,6 +197,13 @@
         }
     }
 
+    &.type {
+        & svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
     &:hover {
         border-color: var(--main--lighter);
         box-shadow: var(--form-shadow);
