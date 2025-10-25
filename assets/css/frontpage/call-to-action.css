@@ -1,0 +1,169 @@
+.site-main {
+    & section#cta.block {
+        position: relative;
+        overflow: hidden;
+
+        & .background-cta {
+            position: absolute;
+            top: -10%;
+            left: 0;
+            width: 100%;
+            height: 130%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        &::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, light-dark(var(--wp--preset--color--base), var(--base-dark)) 33.3333%, transparent 100%);
+            z-index: 0;
+        }
+
+        & .content {
+            padding: 100px 0;
+            position: relative;
+            perspective: 1000px;
+
+            & .title-section {
+                font-size: calc(var(--wp--preset--font-size--x-large) + 2dvw);
+                max-width: 768px;
+                line-height: 1.3;
+            }
+            
+            & .subtitle-section {
+                font-size: calc(var(--wp--preset--font-size--large) + 5px);
+                max-width: 500px;
+                margin-block-end: 4rem;
+            }
+
+            & .numbers {
+                display: flex;
+                gap: 2rem;
+                margin-bottom: 2rem;
+
+                & .sales {
+                    min-width: 120px;
+                }
+
+                & .number-wrapper,
+                & .number {
+                    display: inline;
+                    font-size: var(--wp--preset--font-size--xx-large);
+                    font-weight: 700;
+                    color: light-dark(var(--main--lighter), var(--main--lighter));
+                }
+            }
+
+            & .contact-for {
+                display: inline-flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 1rem 0;
+
+                & > *:nth-child(2) {
+                    margin: 0 1rem;
+                }
+
+                & > *:last-child {
+                    color: light-dark(var(--main--lighter), var(--main--lighter));
+                }
+            }
+
+            & .happy-family-on-home {
+                margin-top: 5rem;
+                width: fit-content;
+                padding: 1.5rem;
+                background-color: #fff;
+                border-radius: 2rem;
+                box-shadow: rgba(17, 12, 46, 0.15) 0px 24px 50px 0px;
+
+                /* Configuración inicial */
+                transform-style: preserve-3d;
+                transition: transform 0.5s ease-in-out;
+                /* Para suavizar la animación */
+                display: inline-block;
+                animation: floatRotate 3s ease-in-out infinite;
+
+                & img {
+                    border-radius: .5rem;
+                }
+            }
+        }
+    }
+}
+
+@keyframes floatRotate {
+    0% {
+        transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+        transform: translateZ(100px) rotateX(10deg) rotateY(15deg);
+    }
+    100% {
+        transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
+    }
+}
+
+@media (width < 600px) {
+    .site-main {
+        & section#cta.block {
+            & .content {
+                & .happy-family-on-home {
+                    width: 100%;
+                    padding: .5rem;
+                    border-radius: 1rem;
+
+                    & img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (width >= 600px) {
+    .site-main {
+        & section#cta.block {
+            & .content {
+                & .happy-family-on-home {
+                    & img {
+                        max-width: 400px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (width >= 1024px) {
+    .site-main {
+        & section#cta.block {
+            & .content {
+                & .happy-family-on-home {
+                    margin-top: 0;
+                    position: absolute;
+                    top: 30%;
+                    left: 58%;
+                }
+            }
+        }
+    }
+}
+
+body.is-chromium {
+    & .happy-family-on-home {
+        border-radius: 2rem !important;
+        corner-shape: squircle;
+
+        & img {
+            border-radius: 1rem !important;
+            corner-shape: squircle;
+        }
+    }
+}

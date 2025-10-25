@@ -163,11 +163,13 @@ function frontpage_template() {
         $frontpage_css           = "$assets_path/css/frontpage.css";
         $hero_css                = "$assets_path/css/frontpage/hero.css";
         $featured_properties_css = "$assets_path/css/frontpage/featured-properties.css";
-        $featured_properties_js  = "$assets_path/js/slideshow.js";
-        $filter_properties_js    = "$assets_path/js/slideshow-related-properties.js";
         $filter_properties_css   = "$assets_path/css/frontpage/filter-properties.css";
         $choose_us_css           = "$assets_path/css/frontpage/why-choose-us.css";
         $testimonies_css         = "$assets_path/css/frontpage/testimonies.css";
+        $cta_css                 = "$assets_path/css/frontpage/call-to-action.css";
+        $featured_properties_js  = "$assets_path/js/slideshow.js";
+        $parallax_js             = "$assets_path/js/parallax.js";
+        $cta_js                  = "$assets_path/js/cta-numbers.js";
 
         inmobiliaria_enqueue_style( 'shapes', $shapes_css );
         inmobiliaria_enqueue_style( 'frontpage', $frontpage_css );
@@ -176,9 +178,12 @@ function frontpage_template() {
         inmobiliaria_enqueue_style( 'filter-properties', $filter_properties_css );
         inmobiliaria_enqueue_style( 'why-choose-us', $choose_us_css );
         inmobiliaria_enqueue_style( 'testimonies', $testimonies_css );
+        inmobiliaria_enqueue_style( 'call-to-action', $cta_css );
 
         inmobiliaria_enqueue_script( 'featured-properties-slideshow', $featured_properties_js );
-        inmobiliaria_enqueue_script( 'filter-properties-slideshow', $filter_properties_js );
+        inmobiliaria_enqueue_script( 'parallax', $parallax_js );
+        inmobiliaria_enqueue_script( 'numbers-animation', $cta_js );
+
     }
 }
 add_action( 'wp_enqueue_scripts', 'frontpage_template' );

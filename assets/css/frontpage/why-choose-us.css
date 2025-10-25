@@ -50,7 +50,7 @@
                 }
 
                 h3.subtitle-section {
-                    font-size: var(var(--wp--preset--font-size--large) + 5px);
+                    font-size: calc(var(--wp--preset--font-size--large) + 5px);
                     font-weight: 600;
                 }
 

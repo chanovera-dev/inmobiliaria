@@ -122,6 +122,7 @@ textarea {
       background-color: transparent;
       border-width: 1px;
       border-style: solid;
+      border-color: light-dark(var(--wp--preset--color--border-line), var(--wp--preset--color--border-line-dark));
       text-transform: inherit;
       height: auto;
     }
@@ -148,7 +149,12 @@ textarea {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.15) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -2px 0px inset;
 }
 
-.secondary {}
+.secondary {
+    box-shadow: none;
+    background-color: transparent;
+    border: 1px solid light-dark(var(--wp--preset--color--border-line), var(--wp--preset--color--border-line-dark));
+    height: auto;
+}
 
 .outline {
   border-color: var(--wp--preset--color--accent-6);

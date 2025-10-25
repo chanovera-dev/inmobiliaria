@@ -3,11 +3,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1.2rem;
-
-    .go-to-properties {
-        color: var(--wp--preset--color--base);
-        text-shadow: var(--modern-text-shadow);
-    }
 }
 
 @media (width < 600px) {
