@@ -2,7 +2,7 @@
     <a href="<?php the_permalink(); ?>">
         <div class="block">
             <?php
-                echo get_the_post_thumbnail( null, 'full', [ 'class' => 'thumbnail background-parallax', 'alt'   => get_the_title(), 'loading' => 'lazy', 'data-speed' => '0.25' ] );
+                echo get_the_post_thumbnail( null, 'full', [ 'class' => 'thumbnail', 'alt'   => get_the_title(), 'loading' => 'lazy', 'data-speed' => '0.25' ] );
             ?>
             <div class="content">
                 <div class="details">
