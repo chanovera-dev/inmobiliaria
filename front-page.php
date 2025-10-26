@@ -23,7 +23,7 @@ get_header(); ?>
             'frontpage/testimonies',
             'frontpage/call-to-action',
             'frontpage/about-us',
-            // 'frontpage/blog',
+            'frontpage/blog',
             // 'frontpage/contact',
             // 'frontpage/interactive-map',
         ];

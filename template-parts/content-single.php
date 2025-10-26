@@ -3,7 +3,7 @@
         <header class="block page">
             <div class="content heading">
                 <?php
-                if ( has_post_thumbnail() ) {
+                    if ( has_post_thumbnail() ) {
                         echo get_the_post_thumbnail( null, 'full', [ 'class' => 'background-hero', 'alt'   => get_the_title(), 'loading' => 'lazy', 'data-speed' => '0.25' ] );
                     }
 

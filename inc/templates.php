@@ -83,6 +83,7 @@ function inmobiliaria_get_assets() {
             'testimonies'        => "$assets_path/css/frontpage/testimonies.css",
             'call-to-action'     => "$assets_path/css/frontpage/call-to-action.css",
             'about-us'           => "$assets_path/css/frontpage/about-us.css",
+            'frontpage-blog'     => "$assets_path/css/frontpage/blog.css",
             'properties'         => "$assets_path/css/properties.css",
             'sidebar'            => "$assets_path/css/properties-sidebar.css",
             'property'           => "$assets_path/css/property.css",
@@ -222,6 +223,7 @@ function frontpage_template() {
         inmobiliaria_enqueue_style( 'testimonies', $a['css']['testimonies'] );
         inmobiliaria_enqueue_style( 'call-to-action', $a['css']['call-to-action'] );
         inmobiliaria_enqueue_style( 'about-us', $a['css']['about-us'] );
+        inmobiliaria_enqueue_style( 'blog', $a['css']['frontpage-blog'] );
 
         inmobiliaria_enqueue_script( 'animate-in', $a['js']['animate-in'] );
         inmobiliaria_enqueue_script( 'featured-properties-slideshow', $a['js']['slideshow'] );
