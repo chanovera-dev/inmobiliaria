@@ -44,7 +44,23 @@ function inmobiliaria_enqueue_script( $handle, $path ) {
 }
 
 /**
- * Returns an array with all asset paths for reuse.
+ * Returns a centralized registry of all theme asset paths.
+ *
+ * Provides a single source of truth for referencing CSS and JS files used
+ * throughout the theme. This ensures consistency, reduces repetition across
+ * enqueue functions, and simplifies maintenance when updating asset locations.
+ *
+ * The returned array is organized into 'css' and 'js' subarrays, where each key
+ * corresponds to an asset handle and each value is its relative path from the
+ * theme directory.
+ *
+ * Example:
+ * $assets = inmobiliaria_get_assets();
+ * wp_enqueue_style( 'frontpage', get_template_directory_uri() . $assets['css']['frontpage'] );
+ *
+ * @since 1.0.0
+ * @package inmobiliaria
+ * @return array Associative array of asset paths grouped by type ('css' and 'js').
  */
 function inmobiliaria_get_assets() {
     $assets_path = '/assets';
