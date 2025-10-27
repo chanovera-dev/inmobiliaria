@@ -5,6 +5,7 @@
     border: 1px solid light-dark(var(--wp--preset--color--border-line), var(--wp--preset--color--border-line-dark));
     border-radius: 1rem;
     font-size: var(--wp--preset--font-size--small);
+    transition: border-color .3s ease;
 
     & .post--header {
         aspect-ratio: 4 / 3;
@@ -129,6 +130,10 @@
         & .post--tags {
             padding-top: 1rem;
         }
+    }
+
+    &:hover {
+        border-color: light-dark(var(--main--lighter), var(--main--lighter));
     }
 }
 
