@@ -142,10 +142,12 @@
 }
 
 body.is-chromium {
-    & .post {
-        & header.post--header {
-            border-radius: 2rem;
-            corner-shape: squircle;
+    #blog {
+        & .post {
+            & header.post--header {
+                border-radius: 2rem;
+                corner-shape: squircle;
+            }
         }
     }
 }
