@@ -1,7 +1,9 @@
 <section id="contact" class="block">
+    <img class="background-parallax" src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/panoramica-monterrey.webp" width="1920" height="1080" alt="" loading="lazy" data-speed= "0.25">
     <div class="content">
         <div class="contact-data">
-            <div class="contact-form-wrapper">
+            <div class="contact-form-wrapper glass-bright glass-backdrop">
+                <div class="glass-reflex"></div>
                 <h2 class="title-section">¿Cómo podemos ayudarte?</h2>
                 <h3 class="subtitle-section">¿Buscas ayuda? Platica con nuestro equipo</h3>
                 <?php echo do_shortcode( '[contact-form-7 id="bfb4d80" title="Formulario de contacto 1"]' ); ?>

@@ -232,7 +232,7 @@ function frontpage_template() {
         inmobiliaria_enqueue_script( 'featured-properties-slideshow', $a['js']['slideshow'] );
         inmobiliaria_enqueue_script( 'parallax', $a['js']['parallax'] );
         inmobiliaria_enqueue_script( 'animation-numbers', $a['js']['animation-numbers'] );
-        inmobiliaria_enqueue_script( 'contact-script', $a['js']['fp-contact-script'] );
+        // inmobiliaria_enqueue_script( 'contact-script', $a['js']['fp-contact-script'] );
 
     }
 }

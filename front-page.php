@@ -24,7 +24,7 @@ get_header(); ?>
             'frontpage/call-to-action',
             'frontpage/about-us',
             'frontpage/blog',
-            // 'frontpage/contact',
+            'frontpage/contact',
             // 'frontpage/faq',
             // 'frontpage/interactive-map',
         ];
