@@ -159,10 +159,10 @@ img {
             transition: opacity .6s ease-in-out;
 
             & .custom-logo {
-                width: clamp(2.5rem, 10vw, 6.25rem);
-                height: clamp(2.5rem, 10vw, 6.25rem);
-                max-width: 6.25rem;
-                max-width: 6.25rem;
+                width: clamp(2.5rem, 10vw, 4rem);
+                height: clamp(2.5rem, 10vw, 4rem);
+                max-width: 4rem;
+                max-width: 4rem;
                 object-fit: contain;
                 transition: max-width .6s ease-in-out;
             }
