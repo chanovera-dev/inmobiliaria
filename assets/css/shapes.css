@@ -285,6 +285,14 @@
     }
 }
 
+.text-white {
+    color: var(--wp--preset--color--base);
+
+    &.text-shadow {
+        text-shadow: var(--modern-text-shadow);
+    }
+}
+
 body.is-chromium {
     & .post {
         border-radius: 2rem;
