@@ -20,10 +20,13 @@ function setup_inmobiliaria() {
      */
     register_nav_menus(
         array(
-            'contact'      => __( 'Contact', 'inmobiliaria' ),
-            'services'     => __( 'Services', 'inmobiliaria' ),
-            'primary'      => __( 'Main Menu', 'inmobiliaria' ),
-            'social'       => __( 'Social Menu', 'inmobiliaria' ),
+            'contact'         => __( 'Contact', 'inmobiliaria' ),
+            'services'        => __( 'Services', 'inmobiliaria' ),
+            'primary'         => __( 'Main Menu', 'inmobiliaria' ),
+            'social'          => __( 'Social Menu', 'inmobiliaria' ),
+            'contact-chat'    => __( 'Contact Chat', 'inmobiliaria' ),
+            'contact-call'    => __( 'Contact Call', 'inmobiliaria' ),
+            'contact-address' => __( 'Contact Adress', 'inmobiliaria' ),
         )
     );
 

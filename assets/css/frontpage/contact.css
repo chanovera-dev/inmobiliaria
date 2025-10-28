@@ -1,0 +1,28 @@
+.site-main {
+    & section#contact.block {
+        & .content {
+            & .contact-data {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 2rem;
+
+                & .contact--list {
+                    & > *:not(:last-child) {
+                        margin-bottom: 2rem;
+                    }
+
+                    & div {
+                        display: grid;
+                        gap: .5rem;
+                        align-items: start;
+
+                        & ul {
+                            padding-left: 0;
+                            list-style: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
