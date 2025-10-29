@@ -171,10 +171,7 @@ function posts_styles() {
         inmobiliaria_enqueue_style( 'breadcrumbs', $a['css']['breadcrumbs'] );
         inmobiliaria_enqueue_style( 'posts', $a['css']['posts'] );
         inmobiliaria_enqueue_style( 'shapes', $a['css']['shapes'] );
-        
-        if ( paginate_links() ) {
-            inmobiliaria_enqueue_style( 'pagination', $a['css']['pagination'] );
-        }
+        inmobiliaria_enqueue_style( 'pagination', $a['css']['pagination'] );
     }
 }
 add_action( 'wp_enqueue_scripts', 'posts_styles' );
@@ -262,7 +259,7 @@ function properties_templates() {
         inmobiliaria_enqueue_style( 'sidebar', $a['css']['sidebar'] );
         inmobiliaria_enqueue_style( 'shapes', $a['css']['shapes'] );
         inmobiliaria_enqueue_style( 'pagination', $a['css']['pagination'] );
-        inmobiliaria_enqueue_script( 'filters', $a['css']['filters'] );
+        inmobiliaria_enqueue_script( 'filters', $a['js']['filters'] );
         inmobiliaria_enqueue_script( 'reset', $a['js']['reset'] );
 
         wp_enqueue_script('ajax-properties', get_template_directory_uri() . '/assets/js/ajax-properties.js', ['jquery'], null, true);
