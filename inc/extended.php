@@ -613,15 +613,3 @@ add_action('wp_ajax_toggle_featured', function() {
     update_field('featured', $value, $post_id); // ACF actualiza el campo
     wp_send_json_success();
 });
-
-add_action('template_redirect', function() {
-    // Verifica si es búsqueda global
-    if (is_search() && isset($_GET['post_type']) && $_GET['post_type'] === 'property') {
-        // Busca si existe search-property.php en el tema
-        $template = locate_template('search-property.php');
-        if ($template) {
-            include $template;
-            exit;
-        }
-    }
-});
