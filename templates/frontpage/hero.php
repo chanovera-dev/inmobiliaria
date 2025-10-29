@@ -7,7 +7,7 @@
             <h1 class="page-title">Encuentra la casa perfecta para tu próxima etapa</h1>
             <h2 class="subtitle">Más de 300 propiedades verificadas en todo México</h2>
             <form class="property-filter-form" id="property-filters" method="get" action="<?php echo site_url('/propiedades/'); ?>">
-                <input type="text" name="search" placeholder="<?php esc_html_e('Palabras clave', 'inmobiliaria'); ?>" value="<?php echo isset($_GET['search']) ? esc_attr($_GET['search']) : ''; ?>">
+                <input type="text" name="search" placeholder="<?php esc_html_e('Estado, ciudad, compra, renta, etc.', 'inmobiliaria'); ?>" value="<?php echo isset($_GET['search']) ? esc_attr($_GET['search']) : ''; ?>">
                 <button type="submit"><?php esc_html_e('BUSCAR CASA', 'inmobiliaria'); ?></button>
             </form>
             <div class="call-to-action">

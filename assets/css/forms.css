@@ -105,17 +105,31 @@ textarea {
     transition: color .15s ease-in-out, border-color .15s ease-in-out, filter .3s ease-in-out, gap .3s ease-in-out;
 
     &:has(svg) {
-      line-height: 2;
+        line-height: 2;
     }
 
     & svg {
-      height: 1lh;
+        height: 1lh;
+        position: relative;
+        bottom: 1px;
+        transition: transform .3s ease-in-out;
     }
 
     &:hover {
-      filter: brightness(1.1);
-      cursor: pointer;
-      gap: 12px;
+        filter: brightness(1.1);
+        cursor: pointer;
+      
+        & svg {
+            transform: translateX(-5px);
+        }
+    }
+
+    &.without-line.go-to-properties {
+        &:hover {
+            & svg {
+                transform: translateX(5px);
+            }
+        }
     }
 
     &.yellow {
@@ -158,7 +172,6 @@ textarea {
     box-shadow: none;
     background-color: transparent;
     border: 1px solid light-dark(var(--wp--preset--color--border-line), var(--wp--preset--color--border-line-dark));
-    height: auto;
 }
 
 .outline {

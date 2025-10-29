@@ -13,6 +13,7 @@
 
     --main--lighter: oklch(from var(--wp--preset--color--main) calc(l + .2) c h);
     --main--lighter-plus: oklch(from var(--wp--preset--color--main-alpha) calc(l + .3) c calc(h * .88));
+    --main-glass: #1271288a;
 
     --green--lighter: oklch(from var(--wp--preset--color--green) calc(l + .2) c h);
     --green--lighter-plus: oklch(from var(--wp--preset--color--green-alpha) calc(l + .3) c calc(h * .88));

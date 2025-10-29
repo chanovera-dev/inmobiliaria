@@ -50,6 +50,15 @@
 
                                 & label {
                                     width: 100%;
+
+                                    & input,
+                                    & textarea {
+                                        background-color: light-dark(#ffffff1f, #0000001f);
+
+                                        &:focus {
+                                            background-color: light-dark(#ffffff4e, #0000004e);
+                                        }
+                                    }
                                 }
                             }
                         }

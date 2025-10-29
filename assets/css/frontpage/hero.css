@@ -39,6 +39,10 @@
                     border: none;
                     background-color: light-dark(var(--wp--preset--color--base-alpha), var(--base-alpha-dark));
                     backdrop-filter: blur(7px);
+
+                    &::placeholder {
+                        color: light-dark(#404040, #999);
+                    }
                 }
 
                 & button {
@@ -54,6 +58,12 @@
                     font-weight: 500;
                     letter-spacing: 2px;
                     background-color: var(--wp--preset--color--base-alpha);
+                    transition: background-color .3s ease, color .3s ease;
+
+                    &:hover {
+                        background-color: var(--main-glass);
+                        color: var(--wp--preset--color--base);
+                    }
                 }
             }
         }
