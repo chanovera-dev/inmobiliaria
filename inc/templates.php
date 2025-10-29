@@ -263,7 +263,10 @@ function properties_templates() {
         inmobiliaria_enqueue_script( 'reset', $a['js']['reset'] );
 
         wp_enqueue_script('ajax-properties', get_template_directory_uri() . '/assets/js/ajax-properties.js', ['jquery'], null, true);
-        wp_localize_script('ajax-properties', 'ajax_object', [ 'ajaxurl' => admin_url('admin-ajax.php'), ]);
+        wp_localize_script('ajax-properties', 'ajax_object', [
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('filter_properties_nonce')
+        ]);
     }
 
     if ( is_singular( 'property' ) ) {
